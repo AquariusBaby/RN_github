@@ -1,0 +1,44 @@
+{
+  "name": "myRN",
+  "version": "0.0.1",
+  "private": true,
+  "scripts": {
+    "start": "node node_modules/react-native/local-cli/cli.js start",
+    "test": "jest",
+    "react-devtools": "react-devtools"
+  },
+  "dependencies": {
+    "prop-types": "^15.7.2",
+    "react": "16.6.3",
+    "react-native": "0.58.6",
+    "react-native-check-box": "^2.1.7",
+    "react-native-easy-toast": "^1.2.0",
+    "react-native-extended-stylesheet": "^0.11.1",
+    "react-native-gesture-handler": "^1.1.0",
+    "react-native-parallax-scroll-view": "^0.21.3",
+    "react-native-reanimated": "^1.0.0-alpha.12",
+    "react-native-sortable-listview": "^0.2.8",
+    "react-native-splash-screen": "^3.2.0",
+    "react-native-swiper": "^1.5.14",
+    "react-native-vector-icons": "^6.4.1",
+    "react-native-webview": "^5.4.2",
+    "react-navigation": "^3.3.2",
+    "react-navigation-redux-helpers": "^3.0.0",
+    "react-navigation-tabs": "^2.0.0-alpha.0",
+    "react-redux": "^6.0.1",
+    "redux": "^4.0.1",
+    "redux-thunk": "^2.3.0"
+  },
+  "devDependencies": {
+    "babel-core": "^7.0.0-bridge.0",
+    "babel-jest": "24.3.1",
+    "jest": "24.3.1",
+    "metro-react-native-babel-preset": "0.53.0",
+    "react-devtools": "^3.6.1",
+    "react-test-renderer": "16.6.3",
+    "redux-devtools": "^3.5.0"
+  },
+  "jest": {
+    "preset": "react-native"
+  }
+}
