@@ -6,35 +6,6 @@
 	<integer>9</integer>
 	<key>logs</key>
 	<dict>
-		<key>32C8C62C-B897-4C73-B842-9A6E0022463C</key>
-		<dict>
-			<key>className</key>
-			<string>IDECommandLineBuildLog</string>
-			<key>documentTypeString</key>
-			<string>&lt;nil&gt;</string>
-			<key>domainType</key>
-			<string>Xcode.IDEActivityLogDomainType.BuildLog</string>
-			<key>fileName</key>
-			<string>32C8C62C-B897-4C73-B842-9A6E0022463C.xcactivitylog</string>
-			<key>highLevelStatus</key>
-			<string>W</string>
-			<key>schemeIdentifier-containerName</key>
-			<string>myRN project</string>
-			<key>schemeIdentifier-schemeName</key>
-			<string>myRN</string>
-			<key>schemeIdentifier-sharedScheme</key>
-			<integer>1</integer>
-			<key>signature</key>
-			<string>Building project myRN with scheme myRN and configuration Debug</string>
-			<key>timeStartedRecording</key>
-			<real>575778638.71540105</real>
-			<key>timeStoppedRecording</key>
-			<real>575778649.51207495</real>
-			<key>title</key>
-			<string>Building project myRN with scheme myRN and configuration Debug</string>
-			<key>uniqueIdentifier</key>
-			<string>32C8C62C-B897-4C73-B842-9A6E0022463C</string>
-		</dict>
 		<key>7A67C5FE-DB22-402B-96D8-41A386CB85A2</key>
 		<dict>
 			<key>className</key>

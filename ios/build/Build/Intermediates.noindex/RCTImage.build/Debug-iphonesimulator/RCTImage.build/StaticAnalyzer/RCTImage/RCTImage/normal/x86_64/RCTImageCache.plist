@@ -6,7 +6,7 @@
 <string>Apple LLVM version 10.0.0 (clang-1000.11.45.5)</string>
  <key>files</key>
  <array>
-  <string>/Users/caipeng/coding/RN/myRN/node_modules/react-native/Libraries/Image/RCTImageCache.m</string>
+  <string>/Users/caipeng/coding/RN/RN_github/node_modules/react-native/Libraries/Image/RCTImageCache.m</string>
  </array>
  <key>diagnostics</key>
  <array>
