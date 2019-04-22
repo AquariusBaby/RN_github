@@ -10,36 +10,57 @@ import GuideSwiper from '../common/Swiper';
 type Props = {}
 export default class WelcomePage extends Component<Props> {
   componentDidMount() {
-    let dataStore = new DataStore();
-    dataStore.getData('Language_All').then((data) => {
-      // console.log(data); // 为空时，返回null
-      if (!data) {
-        dataStore.saveData('Language_All', JSON.stringify(defaultLang), (error) => {
-          if (error) {
-            console.log('语言存储失败');
-            throw new Error(error);
-          } else {
-            console.log('语言存储成功');
-          }
-        });
-      }
-    });
+    // let dataStore = new DataStore();
+    // dataStore.getData('Language_Custom').then((data) => {
+    //   // console.log(data); // 为空时，返回null
+    //   if (!data) {
+    //     dataStore.saveData('Language_All', JSON.stringify(defaultLang), (error) => {
+    //       if (error) {
+    //         console.log('所有语言存储失败');
+    //         throw new Error(error);
+    //       } else {
+    //         console.log('所有语言存储成功');
+    //       }
+    //     });
+    //   }
+    // });
   }
 
   // 开启旅行
   getStart = (customLanguage) => {
+    // console.log(customLanguage);
     let dataStore = new DataStore();
-    dataStore.saveData('Language_All', JSON.stringify(customLanguage), (error) => {
+    dataStore.saveData('Language_Custom', JSON.stringify(customLanguage), (error) => {
       if (error) {
-        console.log('语言存储失败');
+        console.log('自定义语言存储失败');
         throw new Error(error);
       } else {
-        console.log('语言存储成功');
+        console.log('自定义语言存储成功');
       }
+
+      NavigationUtil.resetToHomePage({
+        navigation: this.props.navigation
+      });
     });
-    NavigationUtil.resetToHomePage({
-      navigation: this.props.navigation
+
+  };
+
+  jumpSelect = () => {
+    // console.log(customLanguage);
+    let dataStore = new DataStore();
+    dataStore.saveData('Language_Custom', JSON.stringify(defaultLang), (error) => {
+      if (error) {
+        console.log('默认语言存储失败');
+        throw new Error(error);
+      } else {
+        console.log('默认语言存储成功');
+      }
+
+      NavigationUtil.resetToHomePage({
+        navigation: this.props.navigation
+      });
     });
+
   };
 
   componentWillUnmount() {
@@ -49,7 +70,7 @@ export default class WelcomePage extends Component<Props> {
   render() {
     return (
       <View style={styles.container}>
-        <GuideSwiper getStart={this.getStart} />
+        <GuideSwiper getStart={this.getStart} jumpSelect={this.jumpSelect} />
       </View>
     );
   }

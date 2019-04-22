@@ -4,8 +4,9 @@ import HomePage from '../page/homePage';
 import DetailPage from '../page/detailPage';
 import AboutPage from '../page/my/aboutPage';
 import AboutMePage from '../page/my/aboutMePage';
+import FeedBackPage from '../page/my/feedBackPage';
 import CustomKeyPage from '../page/my/customKeyPage';
-import SearchPage from '../page/my/searchPage';
+import SearchPage from '../page/search/searchPage';
 import CodePushPage from '../page/my/codePushPage';
 import SortKeyPage from '../page/my/sortKeyPage';
 import {connect} from 'react-redux';
@@ -35,6 +36,12 @@ const MainNavigator = createStackNavigator({
       header: null
     }
   },
+  SearchPage: {
+    screen: SearchPage,
+    navigationOptions: {
+      header: null
+    }
+  },
   AboutPage: {
     screen: AboutPage,
     navigationOptions: {
@@ -43,6 +50,12 @@ const MainNavigator = createStackNavigator({
   },
   AboutMePage: {
     screen: AboutMePage,
+    navigationOptions: {
+      header: null
+    }
+  },
+  FeedBackPage: {
+    screen: FeedBackPage,
     navigationOptions: {
       header: null
     }
@@ -57,12 +70,6 @@ const MainNavigator = createStackNavigator({
     screen: SortKeyPage,
     navigationOptions: {
       header: null
-    }
-  },
-  SearchPage: {
-    screen: SearchPage,
-    navigationOptions: {
-      header: null,// 可以通过将header设为null 来禁用StackNavigator的Navigation Bar
     }
   },
   CodePushPage: {

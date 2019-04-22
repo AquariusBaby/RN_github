@@ -5,12 +5,17 @@ import NavigationUtil from '../navigator/NavigationUtil';
 import CustomPage from './my/customThemePage';
 import {connect} from 'react-redux';
 import {onThemeChange} from '../action/theme';
+import {initCustomLanguage} from '../action/language';
 
 type Props = {};
 class HomePage extends Component<Props> {
   constructor(props) {
     super(props);
     console.log(this.props, 'homepage');
+  }
+
+  componentDidMount() {
+    this.props.initCustomLanguage();
   }
 
   render() {
@@ -29,6 +34,7 @@ class HomePage extends Component<Props> {
 
 const mapStateToProps = state => (
   {
+    // customLanguage: state.language.customLanguage,
     isShowCustomThemeView: state.theme.isShowCustomThemeView
   }
 );
@@ -36,8 +42,11 @@ const mapStateToProps = state => (
 const mapDispatchToProps = dispatch => {
   return {
     onThemeChange: status => {
-      console.log(status, 'sss');
+      // console.log(status, 'sss');
       dispatch(onThemeChange(status));
+    },
+    initCustomLanguage() {
+      dispatch(initCustomLanguage());
     }
   }
 };

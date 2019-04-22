@@ -8,8 +8,8 @@ export default class AboutMePage extends Component {
 
   render() {
     return (
-      <View>
-        <Text>aboutme</Text>
+      <View style={{flex: 1, alignItem: 'center', justifyContent: 'center'}}>
+        <Text style={{textAlign: 'center', fontSize: 16}}>懒的很，啥也没有!</Text>
       </View>
     )
   }

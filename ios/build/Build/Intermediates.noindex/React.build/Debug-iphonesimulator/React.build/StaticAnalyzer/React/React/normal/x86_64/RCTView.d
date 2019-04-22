@@ -7,6 +7,8 @@ dependencies: \
   /Users/caipeng/coding/RN/RN_github/node_modules/react-native/React/Views/RCTAutoInsetsProtocol.h \
   /Users/caipeng/coding/RN/RN_github/node_modules/react-native/React/Views/RCTBorderDrawing.h \
   /Users/caipeng/coding/RN/RN_github/node_modules/react-native/React/Base/RCTDefines.h \
+  /Users/caipeng/coding/RN/RN_github/node_modules/react-native/React/DevSupport/RCTInspectorDevServerHelper.h \
+  /Users/caipeng/coding/RN/RN_github/node_modules/react-native/React/DevSupport/RCTPackagerConnection.h \
   /Users/caipeng/coding/RN/RN_github/node_modules/react-native/React/Base/RCTConvert.h \
   /Users/caipeng/coding/RN/RN_github/node_modules/react-native/React/Views/RCTAnimationType.h \
   /Users/caipeng/coding/RN/RN_github/node_modules/react-native/React/Base/RCTLog.h \

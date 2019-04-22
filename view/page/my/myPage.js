@@ -11,7 +11,6 @@ type Props = {};
 class MyPage extends Component<Props> {
   constructor(props) {
     super(props);
-    // this.backPress =
   }
 
   componentDidMount() {
@@ -23,9 +22,6 @@ class MyPage extends Component<Props> {
     let RouteName = null;
     let params = null;
     switch(type) {
-      // case MORE_MENU.Tutorial:
-      //   RouteName = 'WebViewPage';
-      //   break;
       case 'About_Info':
         RouteName = 'AboutPage';
         params = {
@@ -38,13 +34,6 @@ class MyPage extends Component<Props> {
         const {onShowCustomThemeView} = this.props;
         onShowCustomThemeView(true);
         break;
-      case 'CodePush':
-        RouteName = 'CodePushPage';
-        params = {
-          title: 'CodePushPage',
-          theme: theme
-        };
-        break;
       // 标签排序
       case 'Sort_Key':
         RouteName = 'SortKeyPage';
@@ -53,14 +42,6 @@ class MyPage extends Component<Props> {
           theme: theme
         };
         break;
-      // 语言排序
-      // case 'SortKeyPage':
-      //   RouteName = 'SortKeyPage';
-      //   params = {
-      //     title: 'SortKeyPage',
-      //     theme: theme
-      //   };
-      //   break;
       // 标签管理
       case 'Custom_Key':
       case 'Remove_Key':
@@ -72,10 +53,26 @@ class MyPage extends Component<Props> {
         };
         break;
       // 关于作者
-      case 'AboutMePage':
+      case 'About_Me':
         RouteName = 'AboutMePage';
         params = {
           title: 'AboutMePage',
+          theme: theme
+        };
+        break;
+      // 反馈
+      case 'Feed_Back':
+        RouteName = 'FeedBackPage';
+        params = {
+          title: 'FeedBackPage',
+          theme: theme
+        };
+        break;
+      // codePush
+      case 'Code_Push':
+        RouteName = 'CodePushPage';
+        params = {
+          title: 'CodePushPage',
           theme: theme
         };
         break;
@@ -154,8 +151,6 @@ class MyPage extends Component<Props> {
                 color: theme,
               }}/>
           </TouchableOpacity>
-          {/*<View style={styles.line}/>*/}
-          {/*{this.getItem(() => {}, theme, MORE_MENU.Tutorial.name,  MORE_MENU.Tutorial.Icons,  MORE_MENU.Tutorial.icon)}*/}
           <Text style={styles.groupTitle}>标签管理</Text>
           {this.getItem(() => this.onClick(MORE_MENU.Custom_Key, 'Custom_Key'), theme, MORE_MENU.Custom_Key.name, MORE_MENU.Custom_Key.Icons, MORE_MENU.Custom_Key.icon)}
           <View style={styles.line}/>
@@ -171,11 +166,11 @@ class MyPage extends Component<Props> {
           <Text style={styles.groupTitle}>设置</Text>
           {this.getItem(() => this.onClick(MORE_MENU.Custom_Theme, 'Custom_Theme'), theme, MORE_MENU.Custom_Theme.name,  MORE_MENU.Custom_Theme.Icons,  MORE_MENU.Custom_Theme.icon)}
           <View style={styles.line}/>
-          {this.getItem(() => {}, theme, MORE_MENU.About_Author.name,  MORE_MENU.About_Author.Icons,  MORE_MENU.About_Author.icon)}
+          {this.getItem(() => this.onClick(MORE_MENU.Custom_Theme, 'About_Me'), theme, MORE_MENU.About_Author.name,  MORE_MENU.About_Author.Icons,  MORE_MENU.About_Author.icon)}
           <View style={styles.line}/>
-          {this.getItem(() => {}, theme, MORE_MENU.Feedback.name,  MORE_MENU.Feedback.Icons,  MORE_MENU.Feedback.icon)}
+          {this.getItem(() => this.onClick(MORE_MENU.Feedback, 'Feed_Back'), theme, MORE_MENU.Feedback.name,  MORE_MENU.Feedback.Icons,  MORE_MENU.Feedback.icon)}
           <View style={styles.line}/>
-          {this.getItem(() => {}, theme, MORE_MENU.CodePush.name,  MORE_MENU.CodePush.Icons,  MORE_MENU.CodePush.icon)}
+          {this.getItem(() => this.onClick(MORE_MENU.CodePush, 'Code_Push'), theme, MORE_MENU.CodePush.name,  MORE_MENU.CodePush.Icons,  MORE_MENU.CodePush.icon)}
         </ScrollView>
       </View>
     )

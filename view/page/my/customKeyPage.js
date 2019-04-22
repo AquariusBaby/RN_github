@@ -7,52 +7,29 @@ import CheckBox from 'react-native-check-box';
 import {lang, defaultLang} from './lang';
 import DataStore from '../../expand/dao/dataStore';
 import {connect} from 'react-redux';
+import {toggleCustomLanguage} from '../../action/language';
 
 class CustomKeyPage extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      // langKeys: [...lang]
       langKeys: []
     };
   }
 
   componentDidMount() {
-    // console.log(DataStore);
-    // DataStore.saveData('all_language', lang, (error, result) => {
-    //   this.state.langKeys = [...lang];
-    // });
     let {isRemoveKey} = this.props.navigation.state.params;
-    let dataStore = new DataStore();
-    dataStore.getData('Language_All').then((data) => {
-      if (!data) {
-        if (isRemoveKey) {
-          let checkedList = defaultLang.filter((item) => item.checked);
-          this.setState({
-            langKeys: [...checkedList]
-          });
-          return ;
-        }
-        this.setState({
-          langKeys: [...defaultLang]
-        })
-      } else {
-        let storeData = JSON.parse(data.data);
-        if (isRemoveKey) {
-          let checkedList = storeData.filter((item) => item.checked);
-          this.setState({
-            langKeys: [...checkedList]
-          });
-          return ;
-        }
-        // console.log(this.state.langKeys, typeof data.data, JSON.parse(data.data));
-        this.setState({
-          langKeys: [...storeData]
-        })
-      }
-    }).catch((error) => {
-      // console.log(error, 'error');
-    })
+
+    // 此处加个延迟优化点进来时出现的卡顿（数据渲染太多）
+    setTimeout(() => {
+      const customLanguage = this.props.customLanguage;
+      let checkedList = isRemoveKey ? customLanguage.filter((item) => item.checked) : customLanguage;
+
+      this.setState({
+        langKeys: [...checkedList]
+      });
+    }, 0);
+
   }
 
   renderLeftBtn = () => {
@@ -81,6 +58,9 @@ class CustomKeyPage extends Component {
   }
 
   onClick = (data, index) => {
+    // 添加/取消一门语言
+    this.props.toggleCustomLanguage(index);
+
     data.checked = !data.checked;
     this.setState({
       langKeys: this.state.langKeys
@@ -120,7 +100,7 @@ class CustomKeyPage extends Component {
   };
 
   render() {
-    console.log('render');
+    // console.log('render');
     let {title, theme} = this.props.navigation.state.params;
     let statusBar = {
       backgroundColor: theme,
@@ -147,14 +127,14 @@ class CustomKeyPage extends Component {
 
 const mapStateToProps = state => {
   return {
-    allLanguage: state.Language
+    customLanguage: state.language.customLanguage
   }
 };
 
 const mapDispatchToProps = dispatch => {
   return {
-    changeCustomKey: (status) => {
-      dispatch(changeCustomKey(status));
+    toggleCustomLanguage: (index) => {
+      dispatch(toggleCustomLanguage(index));
     }
   }
 };

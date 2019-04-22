@@ -1,7 +1,7 @@
-import React, {Component} from 'react';
+import React, {Component, PureComponent} from 'react';
 import {View, Text, StyleSheet, TouchableOpacity, Image} from 'react-native';
 
-export default class TrendingItem extends Component {
+export default class TrendingItem extends PureComponent {
   constructor(props) {
     super(props);
     this.dataList = this.props.dataList;
@@ -11,8 +11,8 @@ export default class TrendingItem extends Component {
     return (
       <TouchableOpacity onPress={() => this.props.onSelect()}>
         <View style={styles.cell_container}>
-          <Text style={styles.title}>{this.dataList.name}</Text>
-          <Text style={styles.description}>{this.dataList.description}</Text>
+          <Text style={styles.title} numberOfLines={1}>{this.dataList.name}</Text>
+          <Text style={styles.description} numberOfLines={3}>{this.dataList.description}</Text>
           <View style={styles.row}>
             <View style={styles.left_row}>
               <Text>built by:</Text>
@@ -39,6 +39,8 @@ export default class TrendingItem extends Component {
 
 const styles = StyleSheet.create({
   cell_container: {
+    height: 119,
+    overflow: 'hidden',
     padding: 10,
     marginLeft: 5,
     marginRight: 5,
@@ -58,6 +60,8 @@ const styles = StyleSheet.create({
     color: '#212121',
   },
   description: {
+    height: 52,
+    overflow: 'hidden',
     fontSize: 14,
     marginBottom: 2,
     color: '#757575',

@@ -14,7 +14,7 @@ export default class GuideSwiper extends Component {
   }
 
   _randomLanguage() {
-    let len = lang.length;
+    // let len = lang.length;
     let languageArr = [...lang];
 
     languageArr.sort(() => (Math.random() - 0.5));
@@ -44,7 +44,7 @@ export default class GuideSwiper extends Component {
   // 跳过
   jumpSelect = () => {
     // 直接跳过的，那就给来个默认的选择 defaultLang
-    this.props.getStart(defaultLang);
+    this.props.jumpSelect();
   };
 
   // 开始旅行
@@ -82,25 +82,25 @@ export default class GuideSwiper extends Component {
               }}/>
           </TouchableOpacity>
           <View style={styles.tips}>
-            <Text style={{fontSize: 30, fontWeight: 'bold', color: '#607D8B'}}>探索感兴趣的圈子</Text>
-            <Text style={{fontSize: 15, color: '#999', marginTop: 10}}>获取个性化的内容推荐</Text>
+            <Text style={{fontSize: 30, fontWeight: 'bold', color: '#607D8B',shadowColor: 'gray', shadowOffset: {width: 2, height: 2}, shadowOpacity: 0.5, shadowRadius: 2, backgroundColor: 'transparent',}}>探索感兴趣的圈子</Text>
+            <Text style={{fontSize: 15, color: '#999', marginTop: 10, shadowColor: 'gray', shadowOffset: {width: 2, height: 2}, shadowOpacity: 0.5, shadowRadius: 2, backgroundColor: 'transparent',}}>获取个性化的内容推荐</Text>
             {/*<View style={styles.line} />*/}
           </View>
-          <ScrollView style={{flex: 1}}>
-            <View style={{ flexWrap: 'wrap', flexDirection: 'row'}}>
+          <ScrollView>
+            <View style={{ flexDirection: 'row', flexWrap:'wrap'}}>
             {
               this.state.interestTag.map((item, index) => {
-                let widthText = item.name.length * 13;
+                // let widthText = item.name.length * 13;
                 let background = item.checked ? '#E91E63' : '#fff';
                 let fontColor = item.checked ? '#fff' : '#333';
-                if (widthText < 45) {
-                  widthText = 45;
-                }
+                // if (widthText < 45) {
+                //   widthText = 45;
+                // }
                 return (
-                  <TouchableOpacity key={index} style={[styles.tag, {width: widthText}, {backgroundColor: background}]} onPress={() => this.addTag(item, index)}>
-                    <Text style={{ fontSize: 13, color: fontColor,  textAlign: 'center', flex: 1}}>{item.name}</Text>
+                  <TouchableOpacity key={index} style={[styles.tag, {backgroundColor: background, paddingHorizontal: 15}]} onPress={() => this.addTag(item, index)}>
+                    <Text style={{ fontSize: 13, color: fontColor,  textAlign: 'center'}}>{item.name}</Text>
                   </TouchableOpacity>
-                  )
+                )
               })
             }
             </View>
@@ -154,10 +154,11 @@ const styles = StyleSheet.create({
     // flexDirection: 'row',
     justifyContent: 'flex-start',
     marginLeft: 15,
-    shadowColor: 'gray',
-    shadowOffset: {width: 2, height: 2},
-    shadowOpacity: 0.5,
-    shadowRadius: 2,
+    // shadowColor: 'gray',
+    // shadowOffset: {width: 2, height: 2},
+    // shadowOpacity: 0.5,
+    // shadowRadius: 2,
+    // backgroundColor: 'transparent',
   },
   // line: {
   //   // padding: 5,

@@ -2,6 +2,8 @@ dependencies: \
   /Users/caipeng/coding/RN/RN_github/node_modules/react-native/React/Base/RCTJavaScriptLoader.mm \
   /Users/caipeng/coding/RN/RN_github/node_modules/react-native/React/Base/RCTJavaScriptLoader.h \
   /Users/caipeng/coding/RN/RN_github/node_modules/react-native/React/Base/RCTDefines.h \
+  /Users/caipeng/coding/RN/RN_github/node_modules/react-native/React/DevSupport/RCTInspectorDevServerHelper.h \
+  /Users/caipeng/coding/RN/RN_github/node_modules/react-native/React/DevSupport/RCTPackagerConnection.h \
   /Users/caipeng/coding/RN/RN_github/ios/build/Build/Products/Debug-iphonesimulator/include/cxxreact/JSBundleType.h \
   /Users/caipeng/coding/RN/RN_github/node_modules/react-native/React/Base/RCTBridge.h \
   /Users/caipeng/coding/RN/RN_github/node_modules/react-native/React/Base/RCTBridgeDelegate.h \

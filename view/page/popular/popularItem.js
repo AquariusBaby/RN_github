@@ -1,7 +1,7 @@
-import React, {Component} from 'react';
+import React, {Component, PureComponent} from 'react';
 import {View, Text, StyleSheet, TouchableOpacity, Image} from 'react-native';
 
-export default class PopularItem extends Component {
+export default class PopularItem extends PureComponent {
   constructor(props) {
     super(props);
     this.dataList = this.props.dataList;
@@ -11,8 +11,8 @@ export default class PopularItem extends Component {
     return (
       <TouchableOpacity onPress={() => this.props.onSelect()}>
         <View style={styles.cell_container}>
-          <Text style={styles.title}>{this.dataList.full_name}</Text>
-          <Text style={styles.description}>{this.dataList.description}</Text>
+          <Text style={styles.title} numberOfLines={1}>{this.dataList.full_name}</Text>
+          <Text style={styles.description} numberOfLines={3}>{this.dataList.description}</Text>
           <View style={styles.row}>
             <View style={styles.row}>
               <Text>Author:</Text>
@@ -31,6 +31,8 @@ export default class PopularItem extends Component {
 
 const styles = StyleSheet.create({
   cell_container: {
+    height: 119,
+    overflow: 'hidden',
     padding: 10,
     marginLeft: 5,
     marginRight: 5,
@@ -50,9 +52,11 @@ const styles = StyleSheet.create({
     color: '#212121',
   },
   description: {
+    height: 52,
     fontSize: 14,
     marginBottom: 2,
     color: '#757575',
+    overflow: 'hidden'
   },
   row: {
     justifyContent: 'space-between',

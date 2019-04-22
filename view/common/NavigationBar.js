@@ -84,13 +84,16 @@ const styles = StyleSheet.create({
     alignItems: 'center'
   },
   navBarTitleContainer: {
-    justifyContent: 'center',
-    alignItems:'center',
-    position: 'absolute',
-    left: 40,
-    right: 40,
-    top: 0,
-    bottom: 0
+    flex: 1,
+    // justifyContent: 'center',
+    // alignItems:'center',
+    marginLeft: 8,
+    marginRight: 8
+    // position: 'absolute',
+    // left: 40,
+    // right: 40,
+    // top: 0,
+    // bottom: 0
   },
   title: {
     fontSize: 20,

@@ -3,6 +3,8 @@ dependencies: \
   /Users/caipeng/coding/RN/RN_github/node_modules/react-native/React/Views/RCTModalManager.h \
   /Users/caipeng/coding/RN/RN_github/node_modules/react-native/React/Base/RCTBridgeModule.h \
   /Users/caipeng/coding/RN/RN_github/node_modules/react-native/React/Base/RCTDefines.h \
+  /Users/caipeng/coding/RN/RN_github/node_modules/react-native/React/DevSupport/RCTInspectorDevServerHelper.h \
+  /Users/caipeng/coding/RN/RN_github/node_modules/react-native/React/DevSupport/RCTPackagerConnection.h \
   /Users/caipeng/coding/RN/RN_github/node_modules/react-native/React/Modules/RCTEventEmitter.h \
   /Users/caipeng/coding/RN/RN_github/node_modules/react-native/React/Base/RCTBridge.h \
   /Users/caipeng/coding/RN/RN_github/node_modules/react-native/React/Base/RCTBridgeDelegate.h \

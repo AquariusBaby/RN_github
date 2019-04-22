@@ -14,12 +14,16 @@ export default class DetailPage extends Component<Props> {
     super(props);
     this.routeParams = this.props.navigation.state.params;
     const {projectModel} = this.routeParams;
-    const title = projectModel.name;
+    const title = projectModel.full_name || projectModel.name;
     this.state = {
       title: title,
-      url: `${TRENDING_URL}${title}`
+      url: projectModel.html_url ? projectModel.html_url : `${TRENDING_URL}${title}`
     }
   }
+
+  // componentDidMount() {
+  //   console.log(this.routeParams, this.state, 'detail');
+  // }
 
   renderLeftBtn = () => {
     // console.log(this.props.navigation, NavigationUtil);
@@ -99,13 +103,6 @@ export default class DetailPage extends Component<Props> {
 
 const styles = StyleSheet.create({
   container: {
-    // width: '100%',
-    // height: '100%',
-    // flex: 1,
-    // flexDirection: 'row',
-    // alignItems: 'center',
-    // justifyContent: 'center',
-    flex: 1,
-    // paddingTop: DeviceInfo.isIPhoneX_deprecated ? 20 : 0
+    flex: 1
   }
 });

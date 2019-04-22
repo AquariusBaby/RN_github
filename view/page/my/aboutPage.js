@@ -144,6 +144,10 @@ export default class AboutPage extends Component {
         <Text style={styles.item}>2.取消异步任务的思考与实现</Text>
         <Text style={styles.item}>3.react-native-event-bus的使用</Text>
         <Text style={styles.item}>4.react-navigation-redux-helpers的使用</Text>
+        <Text style={styles.item}>"个人博客"："http://jiapenghui.com"</Text>
+        <Text style={styles.item}>"CSDN"："http://blog.csdn.net/fengyuzhengfan"</Text>
+        <Text style={styles.item}>"简书"："http://www.jianshu.com/users/ca3943a4172a/latest_articles"</Text>
+        <Text style={styles.item}>"GitHub"："https://github.com/crazycodeboy"</Text>
       </View>
     );
 

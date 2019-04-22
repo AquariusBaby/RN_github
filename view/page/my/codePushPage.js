@@ -8,8 +8,8 @@ export default class CodePushPage extends Component {
 
   render() {
     return (
-      <View>
-        <Text>CodePushPage</Text>
+      <View style={{flex: 1, alignItem: 'center', justifyContent: 'center'}}>
+        <Text style={{textAlign: 'center', fontSize: 16}}>CodePush</Text>
       </View>
     )
   }

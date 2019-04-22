@@ -5,9 +5,10 @@ import NavigationUtil from '../../navigator/NavigationUtil';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import SortableListView from 'react-native-sortable-listview';
-import {defaultLang} from './lang';
+// import {defaultLang} from './lang';
+import {connect} from 'react-redux';
 
-export default class SortKeyPage extends Component {
+class SortKeyPage extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -42,7 +43,9 @@ export default class SortKeyPage extends Component {
   };
 
   componentDidMount () {
-    let arr = defaultLang.filter((item, index, arr) => {
+    console.log(this.props);
+    let {customLanguage} = this.props;
+    let arr = customLanguage.filter((item, index, arr) => {
       return item.checked === true
     });
 
@@ -115,6 +118,13 @@ class SortCell extends Component {
     )
   }
 }
+
+const mapStateToProps = (state) => {
+  return {
+    customLanguage: state.language.customLanguage
+  }
+};
+export default connect(mapStateToProps, null)(SortKeyPage);
 
 const styles = StyleSheet.create({
   container: {

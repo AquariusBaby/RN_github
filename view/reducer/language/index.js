@@ -1,28 +1,29 @@
 import Types from '../../action/types';
-import {AsyncStorage} from 'react-native';
+// import {AsyncStorage} from 'react-native';
+// import DataStore from '../../expand/dao/dataStore';
 
 const defaultState = {
-  language: [],
-  customKeys: []
+  customLanguage: []
 };
 
-export default function onAction(state = defaultState, action) {
+export default function (state = defaultState, action) {
   switch (action.type) {
-    case Types.INIT_LANGUAGE:
-      let getLanguage = AsyncStorage.getItem('ALL_LANGUAGE');
-      let getCustomKeys = AsyncStorage.getItem('CUSTOM_KEYS');
-
-      Promise.all([getLanguage, getCustomKeys]).then(([language, customKeys]) => {
-        state = {language, customKeys};
-        // state.language = language;
-        // state.customKeys = customKeys;
-        return state;
-      }).catch((error) => {
-        console.log(error);
-      });
+    case Types.INIT_CUSTOM_LANGUAGE:
       // return {
-      //   ...state
+      //   customLanguage: action.customLanguage
       // };
+      return {
+        ...state,
+        customLanguage: action.customLanguage
+      };
+      // break;
+    case Types.TOGGLE_CUSTOM_LANGUAGE:
+      let {customLanguage} = state;
+      let obj = customLanguage.map((item, index) => index === action.index ? {...item, checked: !item.checked} : item);
+      return {
+        ...state,
+        obj
+      };
     default:
       return state;
   }
