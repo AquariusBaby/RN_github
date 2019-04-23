@@ -85,10 +85,10 @@ const styles = StyleSheet.create({
   },
   navBarTitleContainer: {
     flex: 1,
-    // justifyContent: 'center',
-    // alignItems:'center',
+    justifyContent: 'center',
+    alignItems:'center',
     marginLeft: 8,
-    marginRight: 8
+    marginRight: 8,
     // position: 'absolute',
     // left: 40,
     // right: 40,

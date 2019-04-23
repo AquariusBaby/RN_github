@@ -24,6 +24,31 @@ export default function (state = defaultState, action) {
         ...state,
         obj
       };
+    case Types.SORT_CUSTOM_LANGUAGE:
+      // state.customLanguage.map((item, index) => {
+      //   if (item.checked) {
+      //
+      //   }
+      // });
+      function clone(from) {
+        if (!from) return [];
+        let newArray = [];
+        for (let i = 0, l = from.length; i < l; i++) {
+          newArray[i] = from[i];
+        }
+        return newArray;
+      }
+      let cloneArr = clone(state.customLanguage);
+      let j = 0;
+      for (let i = 0, len = cloneArr.length; i < len; i++) {
+        if (cloneArr[i].checked) {
+          cloneArr[i] = action.arr[j];
+          j++;
+        }
+      }
+      return {
+        customLanguage: cloneArr
+      };
     default:
       return state;
   }

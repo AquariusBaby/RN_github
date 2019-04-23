@@ -39,3 +39,10 @@ export function toggleCustomLanguage(index) {
     index
   }
 }
+
+export function sortCustomLanguage(arr) {
+  return {
+    type: Types.SORT_CUSTOM_LANGUAGE,
+    arr
+  }
+}

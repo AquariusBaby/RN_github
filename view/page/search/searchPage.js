@@ -259,7 +259,12 @@ const styles = StyleSheet.create({
     backgroundColor: 'white',
     // marginTop: 10,
     borderRadius: 3,
-    overflow: 'hidden'
+    overflow: 'hidden',
+    // position: 'none'
+    // left: 0,
+    // right: 40,
+    // top: 10,
+    // bottom: 0
   },
   textInput: {
     flex: 1,

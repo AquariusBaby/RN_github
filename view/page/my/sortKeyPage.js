@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import { View, Text, TouchableOpacity, StyleSheet ,TouchableHighlight} from 'react-native';
+import { View, Text, TouchableOpacity, StyleSheet ,TouchableHighlight, Alert} from 'react-native';
 import NavigationBar from '../../common/NavigationBar';
 import NavigationUtil from '../../navigator/NavigationUtil';
 import Ionicons from 'react-native-vector-icons/Ionicons';
@@ -7,10 +7,13 @@ import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityI
 import SortableListView from 'react-native-sortable-listview';
 // import {defaultLang} from './lang';
 import {connect} from 'react-redux';
+import {sortCustomLanguage} from '../../action/language';
 
 class SortKeyPage extends Component {
   constructor(props) {
     super(props);
+    this.isSaved = false;
+    this.isChange = false;
     this.state = {
       checkedArr: []
     }
@@ -20,7 +23,7 @@ class SortKeyPage extends Component {
     return (
       <TouchableOpacity
         style={{padding: 8, paddingLeft: 12}}
-        onPress={() => NavigationUtil.goBack(this.props.navigation)}
+        onPress={() => this.leftClick()}
       >
         <Ionicons
           name={'ios-arrow-back'}
@@ -35,15 +38,45 @@ class SortKeyPage extends Component {
     return (
       <TouchableOpacity
         style={{padding: 8, paddingRight: 12}}
-        onPress={() => {}}
+        onPress={() => this.onSave(true)}
       >
         <Text style={{fontSize: 17, color: '#fff'}}>保存</Text>
       </TouchableOpacity>
     )
   };
 
+  leftClick = () => {
+    if (!this.isChange) {
+      NavigationUtil.goBack(this.props.navigation);
+      return ;
+    }
+    !this.isSaved ?
+      Alert.alert('提示', '要保存修改吗？', [
+        {
+          text: '否',
+          onPress: () => {
+            NavigationUtil.goBack(this.props.navigation)
+          }
+        },
+        {
+          text: '是',
+          onPress: () => {
+            this.onSave(true);
+            NavigationUtil.goBack(this.props.navigation)
+          }
+        }
+      ]) :
+      NavigationUtil.goBack(this.props.navigation)
+  };
+
+  onSave = (flag) => {
+    this.isSaved = true;
+    // this.state.checkedArr
+    this.props.sortCustomLanguage(this.state.checkedArr);
+  };
+
   componentDidMount () {
-    console.log(this.props);
+    // console.log(this.props);
     let {customLanguage} = this.props;
     let arr = customLanguage.filter((item, index, arr) => {
       return item.checked === true
@@ -79,6 +112,7 @@ class SortKeyPage extends Component {
           onRowMoved={
             e => {
               // console.log(e.from, e.to);
+              this.isChange = true;
               this.state.checkedArr.splice(e.to, 0, this.state.checkedArr.splice(e.from, 1)[0]);
               // this.forceUpdate();
               this.setState({
@@ -124,7 +158,14 @@ const mapStateToProps = (state) => {
     customLanguage: state.language.customLanguage
   }
 };
-export default connect(mapStateToProps, null)(SortKeyPage);
+const mapDispatchToProps = (dispatch) => {
+  return {
+    sortCustomLanguage(arr) {
+      dispatch(sortCustomLanguage(arr))
+    }
+  }
+};
+export default connect(mapStateToProps, mapDispatchToProps)(SortKeyPage);
 
 const styles = StyleSheet.create({
   container: {

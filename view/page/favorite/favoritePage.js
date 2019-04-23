@@ -84,7 +84,7 @@ class FavoriteTab extends Component {
   render() {
     return (
       <View>
-        <Text>123</Text>
+        <Text>待完善</Text>
       </View>
     )
   }

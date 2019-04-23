@@ -6,6 +6,38 @@
 	<integer>10</integer>
 	<key>logs</key>
 	<dict>
+		<key>433E8211-4497-4F8D-825D-672BEEFED725</key>
+		<dict>
+			<key>className</key>
+			<string>IDECommandLineBuildLog</string>
+			<key>documentTypeString</key>
+			<string>&lt;nil&gt;</string>
+			<key>domainType</key>
+			<string>Xcode.IDEActivityLogDomainType.BuildLog</string>
+			<key>fileName</key>
+			<string>433E8211-4497-4F8D-825D-672BEEFED725.xcactivitylog</string>
+			<key>primaryObservable</key>
+			<dict>
+				<key>highLevelStatus</key>
+				<string>W</string>
+			</dict>
+			<key>schemeIdentifier-containerName</key>
+			<string>myRN project</string>
+			<key>schemeIdentifier-schemeName</key>
+			<string>myRN</string>
+			<key>schemeIdentifier-sharedScheme</key>
+			<integer>1</integer>
+			<key>signature</key>
+			<string>Building project myRN with scheme myRN and configuration Debug</string>
+			<key>timeStartedRecording</key>
+			<real>577611345.83925998</real>
+			<key>timeStoppedRecording</key>
+			<real>577611349.60186994</real>
+			<key>title</key>
+			<string>Building project myRN with scheme myRN and configuration Debug</string>
+			<key>uniqueIdentifier</key>
+			<string>433E8211-4497-4F8D-825D-672BEEFED725</string>
+		</dict>
 		<key>64DFBBA4-2FC9-4694-90B2-69F660CCD529</key>
 		<dict>
 			<key>className</key>
@@ -37,38 +69,6 @@
 			<string>Building project myRN with scheme myRN and configuration Debug</string>
 			<key>uniqueIdentifier</key>
 			<string>64DFBBA4-2FC9-4694-90B2-69F660CCD529</string>
-		</dict>
-		<key>E7A7F394-E133-4A5E-A7FC-428ED053BF72</key>
-		<dict>
-			<key>className</key>
-			<string>IDECommandLineBuildLog</string>
-			<key>documentTypeString</key>
-			<string>&lt;nil&gt;</string>
-			<key>domainType</key>
-			<string>Xcode.IDEActivityLogDomainType.BuildLog</string>
-			<key>fileName</key>
-			<string>E7A7F394-E133-4A5E-A7FC-428ED053BF72.xcactivitylog</string>
-			<key>primaryObservable</key>
-			<dict>
-				<key>highLevelStatus</key>
-				<string>W</string>
-			</dict>
-			<key>schemeIdentifier-containerName</key>
-			<string>myRN project</string>
-			<key>schemeIdentifier-schemeName</key>
-			<string>myRN</string>
-			<key>schemeIdentifier-sharedScheme</key>
-			<integer>1</integer>
-			<key>signature</key>
-			<string>Building project myRN with scheme myRN and configuration Debug</string>
-			<key>timeStartedRecording</key>
-			<real>577330738.37312305</real>
-			<key>timeStoppedRecording</key>
-			<real>577330742.30465698</real>
-			<key>title</key>
-			<string>Building project myRN with scheme myRN and configuration Debug</string>
-			<key>uniqueIdentifier</key>
-			<string>E7A7F394-E133-4A5E-A7FC-428ED053BF72</string>
 		</dict>
 	</dict>
 </dict>
