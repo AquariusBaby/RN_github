@@ -5,6 +5,7 @@ import NavigationUtil from '../../navigator/NavigationUtil';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import SortableListView from 'react-native-sortable-listview';
+import Toast, {DURATION} from 'react-native-easy-toast';
 // import {defaultLang} from './lang';
 import {connect} from 'react-redux';
 import {sortCustomLanguage} from '../../action/language';
@@ -61,16 +62,16 @@ class SortKeyPage extends Component {
         {
           text: '是',
           onPress: () => {
-            this.onSave(true);
-            NavigationUtil.goBack(this.props.navigation)
+            this.onSave(() => NavigationUtil.goBack(this.props.navigation));
           }
         }
       ]) :
       NavigationUtil.goBack(this.props.navigation)
   };
 
-  onSave = (flag) => {
+  onSave = (callback) => {
     this.isSaved = true;
+    this.toast.show('保存成功', 300, () => {callback && callback();});
     // this.state.checkedArr
     this.props.sortCustomLanguage(this.state.checkedArr);
   };
@@ -113,6 +114,7 @@ class SortKeyPage extends Component {
             e => {
               // console.log(e.from, e.to);
               this.isChange = true;
+              this.isSaved = false;
               this.state.checkedArr.splice(e.to, 0, this.state.checkedArr.splice(e.from, 1)[0]);
               // this.forceUpdate();
               this.setState({
@@ -122,6 +124,16 @@ class SortKeyPage extends Component {
             }
           }
           renderRow={row => <SortCell data={row} theme={theme} />}
+        />
+        <Toast
+          ref={toast => this.toast = toast}
+          style={{backgroundColor: '#000000', padding: 10}}
+          position='center'
+          positionValue={200}
+          fadeInDuration={750}
+          fadeOutDuration={1000}
+          opacity={0.4}
+          textStyle={{color:'#fff'}}
         />
       </View>
     )

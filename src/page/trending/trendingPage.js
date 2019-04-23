@@ -1,38 +1,81 @@
+// TrendingPage
 import React, {Component} from 'react';
-import {View, Text,Image, StyleSheet, FlatList, TouchableOpacity, RefreshControl, Button} from 'react-native';
+import {View, Text, StyleSheet, FlatList, TouchableOpacity, RefreshControl} from 'react-native';
 import {createMaterialTopTabNavigator, createAppContainer} from 'react-navigation';
 import NavigationUtil from '../../navigator/NavigationUtil';
 import {connect} from 'react-redux';
 import {onThemeChange} from '../../action/theme';
-import {onLoadPopularData} from '../../action/popular';
+// import {onLoadPopularData} from '../../action/popular';
 import DataStore from '../../expand/dao/dataStore';
-import Types from '../../action/types';
-import PopularItem from './popularItem';
-import LoadMore from './loadMore';
+// import Types from '../../action/types';
+import TrendingItem from './tmp/trendingItem';
+import LoadMore from '../../common/loadMore';
 import NavigationBar from '../../common/NavigationBar';
 import Ionicons from 'react-native-vector-icons/Ionicons';
+import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
+import TrendingDialog from './tmp/trendingDialog';
 
-const URL = 'https://api.github.com/search/repositories?q=';
-const QUERY_STR = '&sort=stars';
+// const URL = 'https://github.com/trending/';
+const URL = 'https://githubtrendingapi.xyz/.netlify/functions/trending?';
+// const QUERY_STR = 'since=monthly'; // daily  weekly  monthly
 
 type Props = {};
-class PopularPage extends Component<Props> {
+class TrendingPage extends Component<Props> {
   constructor(props) {
     super(props);
+    // this.tabs = ['all', 'java', 'javascript', 'Ruby', 'Vue', 'Shell'];
+    // this.timeOptions = [{text: '今天', key: 'daily'}, {text: '本周', key: 'weekly'}, {text: '本月', key: 'monthly'}];
+    this.state = {
+      timeOption: {
+        text: '今天',
+        key: 'daily'
+      }
+    }
   }
 
   _getTabs = (tabs) => {
     const TABS = {};
     const checkedTabs = tabs.filter((item) => item.checked);
+    let {theme} = this.props;
     checkedTabs.forEach((item, index) => {
-       TABS[`tab${index}`] = {
-         screen: props => <PopularTab key={index} {...props} popular={this.props.popular} onLoadData={this.props.onLoadPopularData} tabLabel={item.name} theme={this.props.theme} />,
-         navigationOptions: {
-           title: item.name
-         }
-       }
-     });
-     return TABS;
+      TABS[`tab${index}`] = {
+        screen: props => <PopularTab {...props} popular={this.props.popular} onLoadData={this.props.onLoadPopularData} tabLabel={item.name} theme={theme} timeOption={this.state.timeOption} />,
+        navigationOptions: {
+          title: item.name
+        }
+      }
+    });
+    return TABS;
+  };
+
+  onSelectTimeOptions = (option) => {
+    this.dialog.hide();
+    if (option.key === this.state.timeOption.key) {
+      return ;
+    }
+    this.setState({
+      timeOption: option
+    });
+  };
+
+  renderTitleView = () => {
+    return (
+      <View>
+        <TouchableOpacity
+          underlayColor='transparent'
+          onPress={() => this.dialog.show()}
+        >
+          <View style={{flexDirection: 'row', alignItems: 'center'}}>
+            <Text style={{fontSize: 18,color: '#FFFFFF',fontWeight: '400'}}>趋势#{this.state.timeOption.text}</Text>
+            <MaterialIcons
+              name={'arrow-drop-down'}
+              size={22}
+              style={{color: 'white'}}
+            />
+          </View>
+        </TouchableOpacity>
+      </View>
+    )
   };
 
   renderRightButton = () => {
@@ -61,18 +104,30 @@ class PopularPage extends Component<Props> {
     )
   };
 
+  renderDialog = () => {
+    return (
+      <TrendingDialog
+        ref={dialog => this.dialog = dialog}
+        onSelect={option => this.onSelectTimeOptions(option)}
+      />
+    )
+  };
+
   render() {
     const {theme} = this.props.theme;
     const {customLanguage} = this.props.language;
-    // const No_Data_Image = ;
-    // console.log(theme);
+    // console.log(this.props, 'trending');
     let statusBar = {
       backgroundColor: theme,
       barStyle: 'light-content',
       hidden: false
     };
-    // console.log(statusBar);
-    let navigationBar = <NavigationBar title={'最热'} statusBar={statusBar} style={{backgroundColor: theme}} rightButton={this.renderRightButton()} />;
+    let navigationBar = <NavigationBar
+      titleView={this.renderTitleView()}
+      statusBar={statusBar}
+      style={{backgroundColor: theme}}
+      rightButton={this.renderRightButton()}
+    />;
     const TabNavigator = customLanguage.length ?
       createAppContainer(createMaterialTopTabNavigator(
         this._getTabs(customLanguage),
@@ -95,9 +150,8 @@ class PopularPage extends Component<Props> {
     return (
       <View style={{flex: 1}}>
         {navigationBar}
-        {
-          TabNavigator && <TabNavigator />
-        }
+        {TabNavigator && <TabNavigator />}
+        {this.renderDialog()}
       </View>
     )
   }
@@ -113,7 +167,6 @@ class PopularTab extends Component<Props> {
     this.pageCount = 1;
     this.pageSize = 10;
     this.isCanLoadMore = false;
-    // this.netWorkError = false;
     this.state = {
       data: [],
       isLoading: false,
@@ -122,6 +175,7 @@ class PopularTab extends Component<Props> {
     }
   }
   componentDidMount() {
+    // console.log(this.props, 'sss');
     this.pullData();
   }
   pullData() {
@@ -133,12 +187,9 @@ class PopularTab extends Component<Props> {
     });
     dataStore.fetchData(url)
       .then(data => {
-        console.log(data, url);
-        // if (this.pageCount === 1) {
-        //   this.isCanLoadMore = true;
-        // }
+        console.log(data, url, 'aaa');
         this.setState({
-          data: this.pageCount === 1 ? [...data.items] : [...this.state.data, ...data.items],
+          data: this.pageCount === 1 ? [...data] : [...this.state.data, ...data],
           isLoading: false
         });
         this.pageCount ++;
@@ -161,28 +212,29 @@ class PopularTab extends Component<Props> {
       })
   }
   getFetchUrl(key, page, pageSize) {
-    return `${URL}${key}${QUERY_STR}&page=${page}&per_page=${pageSize}`;
+    console.log(`${URL}language=${key}&amp;&since=${this.props.timeOption.key}&page=${page}&per_page=${pageSize}`, 'bbb', this.props.timeOption);
+    return `${URL}language=${key}&amp;&since=${this.props.timeOption.key}&page=${page}&per_page=${pageSize}`;
   }
-  renderItem(data) {
+  renderItem = (data) => {
     const {item} = data;
     const {theme} = this.props;
-    // console.log(data, 'bbb');
-    return <PopularItem
+    // console.log(theme, this.props.theme, 'bbb');
+    return <TrendingItem
       dataList={item}
-      onSelect={(callback) => {
-          NavigationUtil.goToPage({
-            theme,
-            projectModel: item,
-            callback
-          }, 'DetailPage')
-        }
-      } />
-  }
+      theme={theme}
+      onSelect={(callBack) => {
+        NavigationUtil.goToPage({
+          theme: theme,
+          projectModel: item,
+          callBack
+        }, 'DetailPage');
+      }}
+    />
+  };
 
   // 初始化的骨架图
   _renderInitComponent = () => {
     const num = [0,0,0,0,0,0];
-    // let num = new Array(5);
     return (
       <View style={{flex: 1, overflow: 'hidden', justifyContent: 'flex-start'}}>
         {
@@ -195,22 +247,6 @@ class PopularTab extends Component<Props> {
             )
           )
         }
-      </View>
-    )
-  };
-
-  // 列表的底部组件
-  _renderListFootComponent = () => {
-    return (
-      <LoadMore LoadMoreText="努力加载中..." type="3" />
-    )
-  };
-
-  // 列表无数据时的空列表组件
-  _renderEmptyComponent = () => {
-    return (
-      <View style={{flex: 1, flexDirection: 'row', justifyContent: 'center', alignItems: 'center'}}>
-        <Image style={{width: 135, height: 165}} source={require('../../img/default-upgrade.png')} />
       </View>
     )
   };
@@ -234,6 +270,22 @@ class PopularTab extends Component<Props> {
     )
   };
 
+  // 列表的底部组件
+  _renderListFootComponent = () => {
+    return (
+      <LoadMore LoadMoreText="努力加载中..." type="3" />
+    )
+  };
+
+  // 列表无数据时的空列表组件
+  _renderEmptyComponent = () => {
+    return (
+      <View>
+        <Text>暂无数据！</Text>
+      </View>
+    )
+  };
+
   render() {
     const {theme} = this.props.theme;
     return (
@@ -243,68 +295,67 @@ class PopularTab extends Component<Props> {
             this._renderNetWorkErrorComponent() :
             this.state.data.length ?
               <FlatList
-              data={this.state.data}
-              renderItem={data => this.renderItem(data)}
-              keyExtractor={item => `${item.id}`}
-              getItemLayout={(data, index) => ({length: 119, offset: 119*index, index})}
-              refreshControl={
-                <RefreshControl
-                  title={'Loading'}
-                  titleColor={theme}
-                  colors={[theme]}
-                  refreshing={this.state.isLoading}
-                  onRefresh={() => {
-                    // console.log('刷新');
-                    this.pageCount = 1;
-                    this.isCanLoadMore = false;
-                    this.pullData();
-                  }}
-                  tintColor={theme}
-                />
-              }
-              onEndReached={() => {
-                // console.log(this.isCanLoadMore, this.state.isLoading);
+            data={this.state.data}
+            renderItem={data => this.renderItem(data)}
+            keyExtractor={item => `${item.name}`}
+            getItemLayout={(data, index) => ({length: 119, offset: 119*index, index})}
+            refreshControl={
+              <RefreshControl
+                title={'Loading'}
+                titleColor={theme}
+                colors={theme}
+                refreshing={this.state.isLoading}
+                onRefresh={() => {
+                  this.pageCount = 1;
+                  this.isCanLoadMore = false;
+                  this.pullData();
+                }}
+                tintColor={theme}
+              />
+            }
+            onEndReached={() => {
                 if (this.isCanLoadMore && !this.state.isLoading) {
                   console.log('---onEndReached----');
                   this.pullData();
                 }
               }
-              }
-              onEndReachedThreshold={0.1}
-              ListFooterComponent={this._renderListFootComponent}
-              // ListEmptyComponent={this._renderEmptyComponent}
-              onMomentumScrollBegin={() => {
-                // console.log('触发滚动动画');
-                // 滚动动画开始时调用此函数。
-                this.isCanLoadMore = true;
-              }}
-            /> :
+            }
+            onEndReachedThreshold={0.1}
+            ListFooterComponent={this._renderListFootComponent}
+            onMomentumScrollBegin={() => {
+              // 滚动动画开始时调用此函数。
+              this.isCanLoadMore = true;
+            }}
+          /> :
               this._renderInitComponent()
         }
-
       </View>
     )
   }
 }
 
 const mapStateToProps = state => {
+  // console.log(state, 'aaa');
   return {
+    language: state.language,
     theme: state.theme,
-    popular: state.popular,
-    language: state.language
+    popular: state.popular
   };
 };
 
 const mapDispatchToProps = dispatch => ({
   changeTheme: (status) => {
+    console.log(status);
     dispatch(onThemeChange(status));
   },
   onLoadPopularData: (obj) => {
+    console.log(obj, 'ss');
+    // dispatch(onLoadPopularData(storeName, url));
     dispatch(obj);
   }
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(PopularPage);
+export default connect(mapStateToProps, mapDispatchToProps)(TrendingPage);
 
 const styles = StyleSheet.create({
   container: {
@@ -325,7 +376,6 @@ const styles = StyleSheet.create({
   },
   cell_container: {
     height: 119,
-    overflow: 'hidden',
     // flex: 1,
     padding: 10,
     marginLeft: 5,
@@ -348,10 +398,10 @@ const styles = StyleSheet.create({
     overflow: 'hidden'
   },
   description: {
-    height: 52,
     width: '100%',
     // flex: 1,
     // height: 60,
+    height: 52,
     marginTop: 5,
     backgroundColor: '#EEEEEE',
     borderRadius: 3,
@@ -366,3 +416,4 @@ const styles = StyleSheet.create({
     overflow: 'hidden'
   }
 });
+

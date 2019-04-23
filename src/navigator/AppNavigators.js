@@ -1,5 +1,5 @@
 import {createStackNavigator, createSwitchNavigator, createAppContainer} from 'react-navigation';
-import WelcomePage from '../page/welcomePage';
+import WelcomePage from '../page/welcome/welcomePage';
 import HomePage from '../page/homePage';
 import DetailPage from '../page/detailPage';
 import AboutPage from '../page/my/aboutPage';

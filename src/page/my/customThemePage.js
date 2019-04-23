@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {View, Text, Modal, ScrollView, DeviceInfo, TouchableHighlight, StyleSheet, Platform} from 'react-native';
-import ThemeFlags from './theme';
+import ThemeFlags from '../../data/theme';
 
 export default class CustomThemePage extends Component {
   constructor(props) {

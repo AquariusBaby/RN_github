@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import {StyleSheet, View, Text, ScrollView, TouchableOpacity} from 'react-native';
 import Swiper from 'react-native-swiper';
 import Ionicons from 'react-native-vector-icons/Ionicons';
-import {lang, defaultLang} from '../page/my/lang';
+import {lang, defaultLang} from '../../../data/lang';
 
 export default class GuideSwiper extends Component {
   constructor(props) {

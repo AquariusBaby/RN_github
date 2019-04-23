@@ -4,8 +4,8 @@ import NavigationBar from '../../common/NavigationBar';
 import NavigationUtil from '../../navigator/NavigationUtil';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
-import PopularItem from '../popular/popularItem';
-import LoadMore from '../popular/loadMore';
+import PopularItem from '../popular/tmp/popularItem';
+import LoadMore from '../../common/loadMore';
 import DataStore from '../../expand/dao/dataStore';
 
 const searchApi = `https://api.github.com/search/repositories?q=`;

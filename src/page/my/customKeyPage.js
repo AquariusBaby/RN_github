@@ -4,7 +4,7 @@ import NavigationBar from '../../common/NavigationBar';
 import NavigationUtil from '../../navigator/NavigationUtil';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import CheckBox from 'react-native-check-box';
-import {lang, defaultLang} from './lang';
+import {lang, defaultLang} from '../../data/lang';
 import DataStore from '../../expand/dao/dataStore';
 import {connect} from 'react-redux';
 import {toggleCustomLanguage} from '../../action/language';

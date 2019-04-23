@@ -38,38 +38,6 @@
 			<key>uniqueIdentifier</key>
 			<string>433E8211-4497-4F8D-825D-672BEEFED725</string>
 		</dict>
-		<key>64DFBBA4-2FC9-4694-90B2-69F660CCD529</key>
-		<dict>
-			<key>className</key>
-			<string>IDECommandLineBuildLog</string>
-			<key>documentTypeString</key>
-			<string>&lt;nil&gt;</string>
-			<key>domainType</key>
-			<string>Xcode.IDEActivityLogDomainType.BuildLog</string>
-			<key>fileName</key>
-			<string>64DFBBA4-2FC9-4694-90B2-69F660CCD529.xcactivitylog</string>
-			<key>primaryObservable</key>
-			<dict>
-				<key>highLevelStatus</key>
-				<string>W</string>
-			</dict>
-			<key>schemeIdentifier-containerName</key>
-			<string>myRN project</string>
-			<key>schemeIdentifier-schemeName</key>
-			<string>myRN</string>
-			<key>schemeIdentifier-sharedScheme</key>
-			<integer>1</integer>
-			<key>signature</key>
-			<string>Building project myRN with scheme myRN and configuration Debug</string>
-			<key>timeStartedRecording</key>
-			<real>577593100.61110103</real>
-			<key>timeStoppedRecording</key>
-			<real>577593106.41633296</real>
-			<key>title</key>
-			<string>Building project myRN with scheme myRN and configuration Debug</string>
-			<key>uniqueIdentifier</key>
-			<string>64DFBBA4-2FC9-4694-90B2-69F660CCD529</string>
-		</dict>
 	</dict>
 </dict>
 </plist>

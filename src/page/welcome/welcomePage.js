@@ -1,11 +1,11 @@
 import React, {Component} from 'react';
 import {Text, View, StyleSheet} from 'react-native';
-import NavigationUtil from '../navigator/NavigationUtil';
+import NavigationUtil from '../../navigator/NavigationUtil';
 // import SplashScreen from 'react-native-splash-screen';
 // import {AsyncStorage} from 'react-native';
-import DataStore from '../expand/dao/dataStore';
-import {lang, defaultLang} from './my/lang';
-import GuideSwiper from '../common/Swiper';
+import DataStore from '../../expand/dao/dataStore';
+import {lang, defaultLang} from '../../data/lang';
+import GuideSwiper from './tmp/Swiper';
 
 type Props = {}
 export default class WelcomePage extends Component<Props> {
