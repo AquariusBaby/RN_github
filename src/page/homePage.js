@@ -6,12 +6,13 @@ import CustomPage from './my/customThemePage';
 import {connect} from 'react-redux';
 import {onThemeChange} from '../action/theme';
 import {initCustomLanguage} from '../action/language';
+import SafeAreaViewPlus from '../common/SafeAreaViewPlus';
 
 type Props = {};
 class HomePage extends Component<Props> {
   constructor(props) {
     super(props);
-    console.log(this.props, 'homepage');
+    // console.log(this.props, 'homepage');
   }
 
   componentDidMount() {
@@ -20,29 +21,30 @@ class HomePage extends Component<Props> {
 
   render() {
     console.log(this.props.navigation);
+    const {theme} = this.props.theme;
     NavigationUtil.navigation = this.props.navigation; // 保存外层导航容器的navigation，以便内层的导航容器跳转外层的导航容器，不然内层的无法跳外层的
     // const Tab = this._tabNavigator();
     return (
-      <View style={styles.container}>
+      <SafeAreaViewPlus
+        topColor={theme}
+      >
         <DynamicTabNavigator />
         <CustomPage onThemeChange={this.props.onThemeChange} visible={this.props.isShowCustomThemeView}  />
-      </View>
-
+      </SafeAreaViewPlus>
     )
   }
 }
 
 const mapStateToProps = state => (
   {
-    // customLanguage: state.language.customLanguage,
-    isShowCustomThemeView: state.theme.isShowCustomThemeView
+    isShowCustomThemeView: state.theme.isShowCustomThemeView,
+    theme: state.theme
   }
 );
 
 const mapDispatchToProps = dispatch => {
   return {
     onThemeChange: status => {
-      // console.log(status, 'sss');
       dispatch(onThemeChange(status));
     },
     initCustomLanguage() {

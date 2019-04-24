@@ -3,10 +3,12 @@ import {View, Text, TouchableOpacity, TextInput, Platform, DeviceInfo, StyleShee
 import NavigationBar from '../../common/NavigationBar';
 import NavigationUtil from '../../navigator/NavigationUtil';
 import Ionicons from 'react-native-vector-icons/Ionicons';
-import FontAwesome from 'react-native-vector-icons/FontAwesome';
+// import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import PopularItem from '../popular/tmp/popularItem';
 import LoadMore from '../../common/loadMore';
 import DataStore from '../../expand/dao/dataStore';
+import SafeAreaViewPlus from '../../common/SafeAreaViewPlus';
+import GlobalStyle from '../../data/globalStyles';
 
 const searchApi = `https://api.github.com/search/repositories?q=`;
 
@@ -47,6 +49,7 @@ export default class SearchPage extends Component {
           onChangeText={text => this.setState({inputKey: text})}
           onFocus={() => this.setState({isFocus: true})}
           blurOnSubmit={true}
+          autoCapitalize={'none'}
           onSubmitEditing={() => {
               this.setState({
                 data: []
@@ -202,7 +205,10 @@ export default class SearchPage extends Component {
   render () {
     let {theme} = this.routeParams.theme;
     return (
-      <View style={{flex: 1}}>
+      <SafeAreaViewPlus
+        topColor={theme}
+        style={GlobalStyle}
+      >
         {this.renderNavigationBar()}
         {
           this.state.inputKey && !this.state.data.length && this.state.isLoading ?
@@ -246,7 +252,7 @@ export default class SearchPage extends Component {
             }}
           /> : null
         }
-      </View>
+      </SafeAreaViewPlus>
     )
   }
 }

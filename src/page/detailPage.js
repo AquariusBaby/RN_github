@@ -5,6 +5,8 @@ import {WebView} from 'react-native-webview';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import FontAwesome from 'react-native-vector-icons/FontAwesome'
 import NavigationUtil from '../navigator/NavigationUtil';
+import SafeAreaViewPlus from '../common/SafeAreaViewPlus';
+import GlobalStyle from '../data/globalStyles';
 
 const TRENDING_URL = 'https://github.com/';
 
@@ -20,10 +22,6 @@ export default class DetailPage extends Component<Props> {
       url: projectModel.html_url ? projectModel.html_url : `${TRENDING_URL}${title}`
     }
   }
-
-  // componentDidMount() {
-  //   console.log(this.routeParams, this.state, 'detail');
-  // }
 
   renderLeftBtn = () => {
     // console.log(this.props.navigation, NavigationUtil);
@@ -66,8 +64,8 @@ export default class DetailPage extends Component<Props> {
   };
 
   renderNavigationBar = () => {
-    let {theme} = this.routeParams.theme;
-    let statusBar = {
+    const {theme} = this.routeParams.theme;
+    const statusBar = {
       backgroundColor: theme,
       barStyle: 'light-content',
       hidden: false
@@ -85,17 +83,20 @@ export default class DetailPage extends Component<Props> {
   };
 
   render() {
+    const {theme} = this.routeParams.theme;
     return (
-      <View style={styles.container}>
+      <SafeAreaViewPlus
+        topColor={theme}
+        style={GlobalStyle}
+      >
         {this.renderNavigationBar()}
-        {/*<Text>{this.state.title}</Text>*/}
         <WebView
           ref={webView => this.webView = webView}
           startInLoadingState={true}
           style={{flex: 1}}
           source={{uri: this.state.url}}
         />
-      </View>
+      </SafeAreaViewPlus>
     );
   }
 }

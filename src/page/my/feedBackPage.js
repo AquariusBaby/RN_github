@@ -4,6 +4,8 @@ import {WebView} from 'react-native-webview';
 import NavigationBar from '../../common/NavigationBar';
 import NavigationUtil from '../../navigator/NavigationUtil';
 import Ionicons from 'react-native-vector-icons/Ionicons';
+import SafeAreaViewPlus from '../../common/SafeAreaViewPlus';
+import GlobalStyle from '../../data/globalStyles';
 
 export default class FeedBackPage extends Component {
   constructor(props) {
@@ -41,14 +43,20 @@ export default class FeedBackPage extends Component {
     );
 
     return (
-      <View style={{flex: 1, alignItem: 'center', justifyContent: 'center'}}>
-        {navigationBar}
-        <WebView
-          startInLoadingState={true}
-          style={{flex: 1}}
-          source={{uri: 'https://github.com/AquariusBaby/RN_github/issues'}}
-        />
-      </View>
+      <SafeAreaViewPlus
+        topColor={theme}
+        style={GlobalStyle}
+        bottomInset={true}
+      >
+        <View style={{flex: 1, alignItem: 'center', justifyContent: 'center'}}>
+          {navigationBar}
+          <WebView
+            startInLoadingState={true}
+            style={{flex: 1}}
+            source={{uri: 'https://github.com/AquariusBaby/RN_github/issues'}}
+          />
+        </View>
+      </SafeAreaViewPlus>
     )
   }
 }

@@ -4,14 +4,14 @@ import {PropTypes} from 'prop-types';
 
 const NAV_BAR_HEIGHT_IOS = 44; // 导航栏在IOS中的高度
 const NAV_BAR_HEIGHT_ANDROID = 50; // 导航栏在Android中的高度
-const STATUS_BAR_HEIGHT = DeviceInfo.isIPhoneX_deprecated ? 20 : 10; // 状态栏高度
+const STATUS_BAR_HEIGHT = DeviceInfo.isIPhoneX_deprecated ? 0 : 20; // 状态栏高度
 const StatusBarShape = { // 设置状态栏所接受的属性
   barStyle: PropTypes.oneOf(['light-content', 'default']),
   hidden: PropTypes.bool,
   backgroundColor: PropTypes.string
 };
 
-console.log(STATUS_BAR_HEIGHT, DeviceInfo);
+console.log(DeviceInfo);
 
 export default class NavigationBar extends Component {
   // 属性类型检查
@@ -62,7 +62,7 @@ export default class NavigationBar extends Component {
     ;
 
     return (
-      <View style={[styles.container, this.props.style]}>
+      <View style={this.props.style}>
         {statusBar}
         {content}
       </View>
@@ -71,9 +71,6 @@ export default class NavigationBar extends Component {
 }
 
 const styles = StyleSheet.create({
-  container: {
-    backgroundColor: '#2196f3'
-  },
   navBar: {
     flexDirection: 'row',
     alignItems: 'center',

@@ -11,3 +11,5 @@
     1.搜索页面
     2.CodePush
     3.全面屏适配
+
+    http://localhost:8081/debugger-ui/

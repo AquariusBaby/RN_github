@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {Modal, Text, StatusBar, StyleSheet, View, Platform, TouchableOpacity, DeviceInfo} from 'react-native';
+import {Modal, Text, StatusBar, StyleSheet, View, Platform, TouchableOpacity, DeviceInfo, TouchableHighlight} from 'react-native';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 
 export const timeOptions = [{text: '今天', key: 'daily'}, {text: '本周', key: 'weekly'}, {text: '本月', key: 'monthly'},];
@@ -24,23 +24,24 @@ export default class TrendingDialog extends Component {
   }
 
   render() {
-    const {onClose, onSelect} = this.props;
+    const {onSelect} = this.props;
     return (
       <Modal
         transparent={true}
         visible={this.state.visible}
-        onRequestClose={() => onClose}
+        onRequestClose={() => {}}
+        animationType={'none'}
       >
-        <TouchableOpacity
+        <TouchableHighlight
           style={styles.container}
-          onPress={() => this.hide()}
+          onPress={() => onSelect()}
         >
-          <MaterialIcons
-            name={'arrow-drop-up'}
-            size={36}
-            style={styles.arrow}
-          />
           <View style={styles.content}>
+            <MaterialIcons
+              name={'arrow-drop-up'}
+              size={36}
+              style={styles.arrow}
+            />
             {
               timeOptions.map((item, index) => {
                 return (
@@ -62,7 +63,7 @@ export default class TrendingDialog extends Component {
               })
             }
           </View>
-        </TouchableOpacity>
+        </TouchableHighlight>
       </Modal>
     )
   }
@@ -73,16 +74,17 @@ const styles = StyleSheet.create({
     backgroundColor: 'rgba(0,0,0,0.6)',
     flex: 1,
     alignItems: 'center',
-    paddingTop: DeviceInfo.isIPhoneX_deprecated ? 0 : 20
+    paddingTop: DeviceInfo.isIPhoneX_deprecated ? 15 : 0
   },
   arrow: {
     marginTop: 40,
     color: 'white',
     padding: 0,
-    margin: -15
+    margin: -15,
+    marginLeft: 24
   },
   content: {
-    backgroundColor: 'white',
+    // backgroundColor: 'white',
     borderRadius: 3,
     paddingTop: 3,
     paddingBottom: 3,
@@ -90,7 +92,8 @@ const styles = StyleSheet.create({
   },
   text_container: {
     alignItems: 'center',
-    flexDirection: 'row'
+    flexDirection: 'row',
+    backgroundColor: 'white',
   },
   text: {
     fontSize: 16,

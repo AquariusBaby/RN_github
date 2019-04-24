@@ -4,10 +4,12 @@ import NavigationBar from '../../common/NavigationBar';
 import NavigationUtil from '../../navigator/NavigationUtil';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import CheckBox from 'react-native-check-box';
-import {lang, defaultLang} from '../../data/lang';
-import DataStore from '../../expand/dao/dataStore';
+// import {lang, defaultLang} from '../../data/lang';
+// import DataStore from '../../expand/dao/dataStore';
 import {connect} from 'react-redux';
 import {toggleCustomLanguage} from '../../action/language';
+import SafeAreaViewPlus from '../../common/SafeAreaViewPlus';
+import GlobalStyle from '../../data/globalStyles';
 
 class CustomKeyPage extends Component {
   constructor(props) {
@@ -115,12 +117,16 @@ class CustomKeyPage extends Component {
       />
     );
     return (
-      <View style={styles.container}>
+      <SafeAreaViewPlus
+        topColor={theme}
+        style={GlobalStyle}
+        bottomInset={true}
+      >
         {navigationBar}
         <ScrollView>
           {this.renderContent()}
         </ScrollView>
-      </View>
+      </SafeAreaViewPlus>
     )
   }
 }

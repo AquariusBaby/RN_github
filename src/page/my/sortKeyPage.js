@@ -9,6 +9,8 @@ import Toast, {DURATION} from 'react-native-easy-toast';
 // import {defaultLang} from './lang';
 import {connect} from 'react-redux';
 import {sortCustomLanguage} from '../../action/language';
+import SafeAreaViewPlus from '../../common/SafeAreaViewPlus';
+import GlobalStyle from '../../data/globalStyles';
 
 class SortKeyPage extends Component {
   constructor(props) {
@@ -105,7 +107,11 @@ class SortKeyPage extends Component {
       />
     );
     return (
-      <View style={styles.container}>
+      <SafeAreaViewPlus
+        topColor={theme}
+        style={GlobalStyle}
+        bottomInset={true}
+      >
         {navigationBar}
         <SortableListView
           data={this.state.checkedArr}
@@ -135,7 +141,7 @@ class SortKeyPage extends Component {
           opacity={0.4}
           textStyle={{color:'#fff'}}
         />
-      </View>
+      </SafeAreaViewPlus>
     )
   }
 }
