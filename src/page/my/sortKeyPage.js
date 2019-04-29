@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import { View, Text, TouchableOpacity, StyleSheet ,TouchableHighlight, Alert} from 'react-native';
+import { View, Text, TouchableOpacity, StyleSheet ,TouchableHighlight, Alert, BackHandler} from 'react-native';
 import NavigationBar from '../../common/NavigationBar';
 import NavigationUtil from '../../navigator/NavigationUtil';
 import Ionicons from 'react-native-vector-icons/Ionicons';
@@ -11,6 +11,7 @@ import {connect} from 'react-redux';
 import {sortCustomLanguage} from '../../action/language';
 import SafeAreaViewPlus from '../../common/SafeAreaViewPlus';
 import GlobalStyle from '../../data/globalStyles';
+import BackPressComponent from '../../common/BackPressComponent';
 
 class SortKeyPage extends Component {
   constructor(props) {
@@ -19,8 +20,20 @@ class SortKeyPage extends Component {
     this.isChange = false;
     this.state = {
       checkedArr: []
-    }
+    };
+    // 处理安卓物理返回键
+    // this.backPress = new BackPressComponent({backPress: (e) => this.onBackPress(e)})
   }
+
+  // 处理安卓物理返回键
+  componentWillUnmount() {
+    BackHandler.removeEventListener('hardwareBackPress', this.onBackPress);
+  }
+
+  onBackPress = () => {
+    NavigationUtil.goBack(this.props.navigation);
+    return true;
+  };
 
   renderLeftBtn = () => {
     return (
@@ -79,6 +92,8 @@ class SortKeyPage extends Component {
   };
 
   componentDidMount () {
+    // 处理安卓物理返回键
+    BackHandler.addEventListener('hardwareBackPress', this.onBackPress);
     // console.log(this.props);
     let {customLanguage} = this.props;
     let arr = customLanguage.filter((item, index, arr) => {

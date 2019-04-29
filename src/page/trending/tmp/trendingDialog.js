@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import {Modal, Text, StatusBar, StyleSheet, View, Platform, TouchableOpacity, DeviceInfo, TouchableHighlight} from 'react-native';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 
-export const timeOptions = [{text: '今天', key: 'daily'}, {text: '本周', key: 'weekly'}, {text: '本月', key: 'monthly'},];
+export const timeOptions = [{text: '今天', key: 'daily'}, {text: '本周', key: 'weekly'}, {text: '本月', key: 'monthly'}];
 export default class TrendingDialog extends Component {
   constructor(props) {
     super(props);
@@ -29,7 +29,7 @@ export default class TrendingDialog extends Component {
       <Modal
         transparent={true}
         visible={this.state.visible}
-        onRequestClose={() => {}}
+        onRequestClose={() => this.hide()}
         animationType={'none'}
       >
         <TouchableHighlight

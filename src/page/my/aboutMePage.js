@@ -1,16 +1,29 @@
 import React, {Component} from 'react';
-import {View, Text, TouchableOpacity} from 'react-native';
+import {View, Text, TouchableOpacity, BackHandler} from 'react-native';
 import NavigationBar from '../../common/NavigationBar';
 import NavigationUtil from '../../navigator/NavigationUtil';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import SafeAreaViewPlus from '../../common/SafeAreaViewPlus';
 import GlobalStyle from '../../data/globalStyles';
 
-
 export default class AboutMePage extends Component {
   constructor(props) {
     super(props);
   }
+
+  // 处理安卓物理返回键
+  componentDidMount() {
+    BackHandler.addEventListener('hardwareBackPress', this.onBackPress);
+  }
+
+  componentWillUnmount() {
+    BackHandler.removeEventListener('hardwareBackPress', this.onBackPress);
+  }
+
+  onBackPress = () => {
+    NavigationUtil.goBack(this.props.navigation);
+    return true;
+  };
 
   renderLeftBtn = () => {
     return (

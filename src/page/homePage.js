@@ -2,9 +2,9 @@ import React, {Component} from 'react';
 import {Text, View, StyleSheet} from 'react-native';
 import DynamicTabNavigator from '../navigator/DynamicTabNavigator';
 import NavigationUtil from '../navigator/NavigationUtil';
-import CustomPage from './my/customThemePage';
+// import CustomPage from './my/customThemePage';
 import {connect} from 'react-redux';
-import {onThemeChange} from '../action/theme';
+// import {onThemeChange} from '../action/theme';
 import {initCustomLanguage} from '../action/language';
 import SafeAreaViewPlus from '../common/SafeAreaViewPlus';
 
@@ -29,7 +29,7 @@ class HomePage extends Component<Props> {
         topColor={theme}
       >
         <DynamicTabNavigator />
-        <CustomPage onThemeChange={this.props.onThemeChange} visible={this.props.isShowCustomThemeView}  />
+        {/*<CustomPage onThemeChange={this.props.onThemeChange} visible={this.props.isShowCustomThemeView}  />*/}
       </SafeAreaViewPlus>
     )
   }
@@ -37,16 +37,16 @@ class HomePage extends Component<Props> {
 
 const mapStateToProps = state => (
   {
-    isShowCustomThemeView: state.theme.isShowCustomThemeView,
+    // isShowCustomThemeView: state.theme.isShowCustomThemeView,
     theme: state.theme
   }
 );
 
 const mapDispatchToProps = dispatch => {
   return {
-    onThemeChange: status => {
-      dispatch(onThemeChange(status));
-    },
+    // onThemeChange: status => {
+    //   dispatch(onThemeChange(status));
+    // },
     initCustomLanguage() {
       dispatch(initCustomLanguage());
     }

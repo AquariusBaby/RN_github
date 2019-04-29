@@ -11,7 +11,7 @@ export function onThemeInit() {
     return {type: Types.THEME_CHANGE, theme: '#2196F3'};
 }
 
-// 初始化主题
-export function onShowCustomThemeView(status) {
-  return {type: Types.ON_SHOW_CUSTOM_THEME_View, status};
-}
+// // 初始化主题
+// export function onShowCustomThemeView(status) {
+//   return {type: Types.ON_SHOW_CUSTOM_THEME_View, status};
+// }

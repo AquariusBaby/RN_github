@@ -44,9 +44,9 @@ export default class PopularTab extends Component {
   pullData() {
     const url = this.getFetchUrl(this.storeName, this.pageCount, this.pageSize);
     let dataStore = new DataStore();
-    this.setState({
-      isLoading: true
-    });
+    // this.setState({
+    //   isLoading: true
+    // });
     dataStore.fetchData(url)
       .then(data => {
         console.log(data, url, 'aaa');
@@ -138,11 +138,14 @@ export default class PopularTab extends Component {
                   <RefreshControl
                     title={'Loading'}
                     titleColor={theme}
-                    colors={theme}
+                    // colors={[theme]}
                     refreshing={this.state.isLoading}
                     onRefresh={() => {
                       this.pageCount = 1;
                       this.isCanLoadMore = false;
+                      this.setState({
+                        isLoading: true
+                      });
                       this.pullData();
                     }}
                     tintColor={theme}

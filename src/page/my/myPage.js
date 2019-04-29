@@ -1,11 +1,12 @@
 import React, {Component} from 'react';
-import {Text, View, StyleSheet, ScrollView, TouchableOpacity} from 'react-native';
+import {Text, View, StyleSheet, ScrollView, TouchableOpacity, BackHandler} from 'react-native';
 import NavigationBar from '../../common/NavigationBar';
 import NavigationUtil from '../../navigator/NavigationUtil';
 import Ionicons from 'react-native-vector-icons/Ionicons'
 import {connect} from 'react-redux';
 import {MORE_MENU} from './moreMenu';
-import {onShowCustomThemeView} from '../../action/theme';
+import { onShowCustomThemeView, onThemeChange } from '../../action/theme';
+import CustomPage from './customThemePage';
 
 type Props = {};
 class MyPage extends Component<Props> {
@@ -13,9 +14,20 @@ class MyPage extends Component<Props> {
     super(props);
   }
 
+  // 处理安卓物理返回键
   componentDidMount() {
-
+    console.log(this.props);
+    BackHandler.addEventListener('hardwareBackPress', this.onBackPress);
   }
+
+  componentWillUnmount() {
+    BackHandler.removeEventListener('hardwareBackPress', this.onBackPress);
+  }
+
+  onBackPress = () => {
+    NavigationUtil.goBack(this.props.navigation);
+    return true;
+  };
 
   onClick(menu, type) {
     const {theme} = this.props;
@@ -31,8 +43,9 @@ class MyPage extends Component<Props> {
         break;
       // 自定义主题
       case 'Custom_Theme':
-        const {onShowCustomThemeView} = this.props;
-        onShowCustomThemeView(true);
+        // const {onShowCustomThemeView} = this.props;
+        // onShowCustomThemeView(true);
+        this.customPage.show();
         break;
       // 标签排序
       case 'Sort_Key':
@@ -118,7 +131,7 @@ class MyPage extends Component<Props> {
       backgroundColor: theme,
       barStyle: 'light-content',
     };
-    console.log(theme,MORE_MENU.Tutorial);
+    // console.log(theme,MORE_MENU.Tutorial);
     let navigationBar = (
       <NavigationBar
         title={'我的'}
@@ -129,6 +142,12 @@ class MyPage extends Component<Props> {
     return (
       <View style={styles.container}>
         {navigationBar}
+        <CustomPage
+          onThemeChange={this.props.onThemeChange}
+          visible={this.props.isShowCustomThemeView}
+          // onClose={() => this.props.onShowCustomThemeView(false)}
+          ref={customPage => this.customPage = customPage}
+        />
         <ScrollView>
           <TouchableOpacity style={styles.item} onPress={() => this.onClick(MORE_MENU.About, 'About_Info')}>
             <View style={styles.about_left}>
@@ -179,7 +198,8 @@ class MyPage extends Component<Props> {
 
 const mapStateToProps = state => {
   return {
-    theme: state.theme.theme
+    theme: state.theme.theme,
+    isShowCustomThemeView: state.theme.isShowCustomThemeView,
   }
 };
 
@@ -187,7 +207,10 @@ const mapDispatchToProps = dispatch => {
   return {
     onShowCustomThemeView: (status) => {
       dispatch(onShowCustomThemeView(status));
-    }
+    },
+    onThemeChange: status => {
+      dispatch(onThemeChange(status));
+    },
   }
 };
 

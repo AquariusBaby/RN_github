@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {View, Text, TouchableOpacity} from 'react-native';
+import {View, Text, TouchableOpacity, BackHandler} from 'react-native';
 import {WebView} from 'react-native-webview';
 import NavigationBar from '../../common/NavigationBar';
 import NavigationUtil from '../../navigator/NavigationUtil';
@@ -11,6 +11,20 @@ export default class FeedBackPage extends Component {
   constructor(props) {
     super(props);
   }
+
+  // 处理安卓物理返回键
+  componentDidMount() {
+    BackHandler.addEventListener('hardwareBackPress', this.onBackPress);
+  }
+
+  componentWillUnmount() {
+    BackHandler.removeEventListener('hardwareBackPress', this.onBackPress);
+  }
+
+  onBackPress = () => {
+    NavigationUtil.goBack(this.props.navigation);
+    return true;
+  };
 
   renderLeftBtn = () => {
     return (
@@ -52,7 +66,7 @@ export default class FeedBackPage extends Component {
           {navigationBar}
           <WebView
             startInLoadingState={true}
-            style={{flex: 1}}
+            style={{flex: 1, zIndex: -1}}
             source={{uri: 'https://github.com/AquariusBaby/RN_github/issues'}}
           />
         </View>

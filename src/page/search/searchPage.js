@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {View, Text, TouchableOpacity, TextInput, Platform, DeviceInfo, StyleSheet, FlatList, RefreshControl, Image} from 'react-native';
+import {View, Text, TouchableOpacity, TextInput, Platform, DeviceInfo, StyleSheet, FlatList, RefreshControl, Image, BackHandler} from 'react-native';
 import NavigationBar from '../../common/NavigationBar';
 import NavigationUtil from '../../navigator/NavigationUtil';
 import Ionicons from 'react-native-vector-icons/Ionicons';
@@ -9,6 +9,7 @@ import LoadMore from '../../common/loadMore';
 import DataStore from '../../expand/dao/dataStore';
 import SafeAreaViewPlus from '../../common/SafeAreaViewPlus';
 import GlobalStyle from '../../data/globalStyles';
+import BackPressComponent from '../../common/BackPressComponent';
 
 const searchApi = `https://api.github.com/search/repositories?q=`;
 
@@ -26,8 +27,28 @@ export default class SearchPage extends Component {
       isLoading: false,
       inputKey: '',
       isFocus: false
-    }
+    };
+    // 处理安卓物理返回键
+    // this.backPress = new BackPressComponent({backPress: (e) => this.onBackPress(e)})
   }
+
+  // onBackPress(e) {
+  //   NavigationUtil.goBack(this.props.navigation);
+  //   return true;
+  // }
+  // 处理安卓物理返回键
+  componentDidMount() {
+    BackHandler.addEventListener('hardwareBackPress', this.onBackPress);
+  }
+
+  componentWillUnmount() {
+    BackHandler.removeEventListener('hardwareBackPress', this.onBackPress);
+  }
+
+  onBackPress = () => {
+    NavigationUtil.goBack(this.props.navigation);
+    return true;
+  };
 
   renderSearchInputView = () => {
     // const placeholder = this.state.inputKey || '请输入';
@@ -182,9 +203,9 @@ export default class SearchPage extends Component {
     // console.log('加载数据pulldata');
     const url = this.getFetchUrl(this.state.inputKey, this.pageCount, this.pageSize);
     let dataStore = new DataStore();
-    this.setState({
-      isLoading: true
-    });
+    // this.setState({
+    //   isLoading: true
+    // });
     dataStore.fetchData(url)
       .then((data) => {
         console.log(data.items);
@@ -208,6 +229,7 @@ export default class SearchPage extends Component {
       <SafeAreaViewPlus
         topColor={theme}
         style={GlobalStyle}
+        bottomInset={true}
       >
         {this.renderNavigationBar()}
         {
@@ -224,13 +246,16 @@ export default class SearchPage extends Component {
               <RefreshControl
                 title={'Loading'}
                 titleColor={theme}
-                colors={[theme]}
+                // colors={[theme]}
                 refreshing={this.state.isLoading}
                 onRefresh={() => {
-                  this.pageCount = 1;
-                  this.isCanLoadMore = false;
-                  this.pullData();
-                }
+                    this.pageCount = 1;
+                    this.isCanLoadMore = false;
+                    this.setState({
+                      isLoading: true
+                    });
+                    this.pullData();
+                  }
                 }
                 tintColor={theme}
               />

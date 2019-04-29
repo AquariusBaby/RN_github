@@ -1,9 +1,7 @@
 import React, {Component} from 'react';
-import {View, Text, StyleSheet, TouchableOpacity, Image, Dimensions, DeviceInfo, Platform} from 'react-native';
-import NavigationBar from '../../common/NavigationBar';
+import {View, Text, StyleSheet, TouchableOpacity, Image, Dimensions, DeviceInfo, Platform, BackHandler} from 'react-native';
 import NavigationUtil from '../../navigator/NavigationUtil';
 import Ionicons from 'react-native-vector-icons/Ionicons';
-import { MORE_MENU } from './moreMenu';
 import ParallaxScrollView from 'react-native-parallax-scroll-view';
 
 const window = Dimensions.get('window');
@@ -17,6 +15,20 @@ export default class AboutPage extends Component {
   constructor(props) {
     super(props);
   }
+
+  // 处理安卓物理返回键
+  componentDidMount() {
+    BackHandler.addEventListener('hardwareBackPress', this.onBackPress);
+  }
+
+  componentWillUnmount() {
+    BackHandler.removeEventListener('hardwareBackPress', this.onBackPress);
+  }
+
+  onBackPress = () => {
+    NavigationUtil.goBack(this.props.navigation);
+    return true;
+  };
 
   getParallaxRenderConfig = (params) => {
     let config = {};

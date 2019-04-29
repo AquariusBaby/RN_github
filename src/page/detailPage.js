@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {Text, View, StyleSheet, DeviceInfo, TouchableOpacity} from 'react-native';
+import {Text, View, StyleSheet, DeviceInfo, TouchableOpacity, BackHandler, Platform} from 'react-native';
 import NavigationBar from '../common/NavigationBar';
 import {WebView} from 'react-native-webview';
 import Ionicons from 'react-native-vector-icons/Ionicons';
@@ -20,16 +20,28 @@ export default class DetailPage extends Component<Props> {
     this.state = {
       title: title,
       url: projectModel.html_url ? projectModel.html_url : `${TRENDING_URL}${title}`
-    }
+    };
   }
 
+  // 处理安卓物理返回键
+  componentDidMount() {
+    BackHandler.addEventListener('hardwareBackPress', this.onBackPress);
+  }
+
+  componentWillUnmount() {
+    BackHandler.removeEventListener('hardwareBackPress', this.onBackPress);
+  }
+
+  onBackPress = () => {
+    NavigationUtil.goBack(this.props.navigation);
+    return true;
+  };
+
   renderLeftBtn = () => {
-    // console.log(this.props.navigation, NavigationUtil);
     return (
       <TouchableOpacity
         style={{padding: 8, paddingLeft: 12}}
         onPress={() => NavigationUtil.goBack(this.props.navigation)}
-        // onPress={() => console.log(this.props.navigation, NavigationUtil)}
       >
         <Ionicons
           name={'ios-arrow-back'}
@@ -74,7 +86,6 @@ export default class DetailPage extends Component<Props> {
       <NavigationBar
         title={this.state.title}
         statusBar={statusBar}
-        // style={theme}
         style={{backgroundColor: theme}}
         leftButton={this.renderLeftBtn()}
         rightButton={this.renderRightBtn()}
@@ -88,12 +99,14 @@ export default class DetailPage extends Component<Props> {
       <SafeAreaViewPlus
         topColor={theme}
         style={GlobalStyle}
+        bottomInset={true}
       >
         {this.renderNavigationBar()}
         <WebView
           ref={webView => this.webView = webView}
           startInLoadingState={true}
-          style={{flex: 1}}
+          // contentInset={{top: 50, left: 0, bottom: 0, right: 0}}
+          style={{flex: 1, zIndex:-1}}
           source={{uri: this.state.url}}
         />
       </SafeAreaViewPlus>
@@ -104,6 +117,6 @@ export default class DetailPage extends Component<Props> {
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1
+    flex: 1,
   }
 });

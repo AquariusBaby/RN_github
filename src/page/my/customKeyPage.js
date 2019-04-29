@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {View, Text, ScrollView, TouchableOpacity, StyleSheet, AsyncStorage} from 'react-native';
+import {View, Text, ScrollView, TouchableOpacity, StyleSheet, AsyncStorage, BackHandler} from 'react-native';
 import NavigationBar from '../../common/NavigationBar';
 import NavigationUtil from '../../navigator/NavigationUtil';
 import Ionicons from 'react-native-vector-icons/Ionicons';
@@ -10,6 +10,7 @@ import {connect} from 'react-redux';
 import {toggleCustomLanguage} from '../../action/language';
 import SafeAreaViewPlus from '../../common/SafeAreaViewPlus';
 import GlobalStyle from '../../data/globalStyles';
+import BackPressComponent from '../../common/BackPressComponent';
 
 class CustomKeyPage extends Component {
   constructor(props) {
@@ -17,9 +18,24 @@ class CustomKeyPage extends Component {
     this.state = {
       langKeys: []
     };
+    // 处理安卓物理返回键
+    // this.backPress = new BackPressComponent({backPress: (e) => this.onBackPress(e)})
   }
 
+  // 处理安卓物理返回键
+  componentWillUnmount() {
+    BackHandler.removeEventListener('hardwareBackPress', this.onBackPress);
+  }
+
+  onBackPress = () => {
+    NavigationUtil.goBack(this.props.navigation);
+    return true;
+  };
+
   componentDidMount() {
+    // 处理安卓物理返回键
+    BackHandler.addEventListener('hardwareBackPress', this.onBackPress);
+
     let {isRemoveKey} = this.props.navigation.state.params;
 
     // 此处加个延迟优化点进来时出现的卡顿（数据渲染太多）

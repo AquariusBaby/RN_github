@@ -1,17 +1,32 @@
 import React, {Component} from 'react';
 import {View, Text, Modal, ScrollView, DeviceInfo, TouchableHighlight, StyleSheet, Platform} from 'react-native';
 import ThemeFlags from '../../data/theme';
+// import NavigationUtil from '../../navigator/NavigationUtil';
 
 export default class CustomThemePage extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      ThemeArr: {}
+      ThemeArr: {},
+      visible: false
     }
+  }
+
+  show() {
+    this.setState({
+      visible: true
+    })
+  }
+
+  hide() {
+    this.setState({
+      visible: false
+    })
   }
 
   onSelectTheme = (themeKey) => {
     this.props.onThemeChange(this.state.ThemeArr[themeKey]);
+    this.hide();
   };
 
   getThemeItem = (themeKey) => {
@@ -57,9 +72,9 @@ export default class CustomThemePage extends Component {
       <Modal
         animationType={"slide"}
         transparent={true}
-        visible={this.props.visible}
+        visible={this.state.visible}
         onRequestClose={() => { // 会在用户按下 Android 设备上的后退按键或是 Apple TV 上的菜单键时触发
-          this.props.onClose();
+          this.hide();
         }}
       >
         <View style={styles.modalContainer}>

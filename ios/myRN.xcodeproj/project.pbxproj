@@ -5,6 +5,7 @@
 	};
 	objectVersion = 46;
 	objects = {
+
 /* Begin PBXBuildFile section */
 		00C302E51ABCBA2D00DB3ED1 /* libRCTActionSheet.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 00C302AC1ABCB8CE00DB3ED1 /* libRCTActionSheet.a */; };
 		00C302E71ABCBA2D00DB3ED1 /* libRCTGeolocation.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 00C302BA1ABCB90400DB3ED1 /* libRCTGeolocation.a */; };
@@ -43,6 +44,8 @@
 		618484B522254A608699D2FC /* libRNReanimated.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 60D52A35173644628CC59BA4 /* libRNReanimated.a */; };
 		6BE1F946CD31446E983FC711 /* FontAwesome5_Solid.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 1D172321755D4480A65043CB /* FontAwesome5_Solid.ttf */; };
 		7CF1BA8ADF714D2BA876125A /* Foundation.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 07BC1D23D52C48029BF0AB2F /* Foundation.ttf */; };
+		7E6018912271917200AF709C /* assets in Resources */ = {isa = PBXBuildFile; fileRef = 7E6018902271917200AF709C /* assets */; };
+		7E6018932271917B00AF709C /* main.jsbundle in Resources */ = {isa = PBXBuildFile; fileRef = 7E6018922271917B00AF709C /* main.jsbundle */; };
 		8204909865914E70AB63A4C8 /* Feather.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 4FFA53768E61436887468767 /* Feather.ttf */; };
 		82A940A8F7A7428DB2E45781 /* MaterialIcons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D5636BAFED8B4E1D8E63CCF1 /* MaterialIcons.ttf */; };
 		832341BD1AAA6AB300B99B32 /* libRCTText.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 832341B51AAA6A8300B99B32 /* libRCTText.a */; };
@@ -427,6 +430,8 @@
 		5E91572D1DD0AC6500FF2AA8 /* RCTAnimation.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTAnimation.xcodeproj; path = "../node_modules/react-native/Libraries/NativeAnimation/RCTAnimation.xcodeproj"; sourceTree = "<group>"; };
 		60D52A35173644628CC59BA4 /* libRNReanimated.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libRNReanimated.a; sourceTree = "<group>"; };
 		78C398B01ACF4ADC00677621 /* RCTLinking.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTLinking.xcodeproj; path = "../node_modules/react-native/Libraries/LinkingIOS/RCTLinking.xcodeproj"; sourceTree = "<group>"; };
+		7E6018902271917200AF709C /* assets */ = {isa = PBXFileReference; lastKnownFileType = folder; name = assets; path = ../release_ios/assets; sourceTree = "<group>"; };
+		7E6018922271917B00AF709C /* main.jsbundle */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = main.jsbundle; path = ../release_ios/main.jsbundle; sourceTree = "<group>"; };
 		832341B01AAA6A8300B99B32 /* RCTText.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTText.xcodeproj; path = "../node_modules/react-native/Libraries/Text/RCTText.xcodeproj"; sourceTree = "<group>"; };
 		847B6412B37344F3B523E332 /* FontAwesome.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = FontAwesome.ttf; path = "../node_modules/react-native-vector-icons/Fonts/FontAwesome.ttf"; sourceTree = "<group>"; };
 		911165844AF2424785AAF002 /* libRNVectorIcons-tvOS.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = "libRNVectorIcons-tvOS.a"; sourceTree = "<group>"; };
@@ -767,6 +772,8 @@
 		83CBB9F61A601CBA00E9B192 = {
 			isa = PBXGroup;
 			children = (
+				7E6018922271917B00AF709C /* main.jsbundle */,
+				7E6018902271917200AF709C /* assets */,
 				13B07FAE1A68108700A75B9A /* myRN */,
 				832341AE1AAA6A7D00B99B32 /* Libraries */,
 				00E356EF1AD99517003FC87E /* myRNTests */,
@@ -911,6 +918,7 @@
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
 			knownRegions = (
+				English,
 				en,
 				Base,
 			);
@@ -1320,9 +1328,11 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7E6018932271917B00AF709C /* main.jsbundle in Resources */,
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
 				13B07FBD1A68108700A75B9A /* LaunchScreen.xib in Resources */,
 				CBBA429E13FB410C86C87CED /* AntDesign.ttf in Resources */,
+				7E6018912271917200AF709C /* assets in Resources */,
 				FBDD9DA3CC834867B7575F79 /* Entypo.ttf in Resources */,
 				D9BF34E446C741CF95DB445C /* EvilIcons.ttf in Resources */,
 				8204909865914E70AB63A4C8 /* Feather.ttf in Resources */,
