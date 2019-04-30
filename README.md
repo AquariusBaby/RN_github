@@ -8,17 +8,16 @@
 
 待开发模块：
     1.CodePush
-    2.启动页配置
+    2.收藏功能
 
+debug地址：
     http://localhost:8081/debugger-ui/
 
-打包：
+打包配置：
     react-native bundle [参数]
       构建 js 离线包 
 
-
     参数:
-
 
         -h, --help                   输出如何使用的信息
         --entry-file <path>          RN入口文件的路径, 绝对路径或相对路径
