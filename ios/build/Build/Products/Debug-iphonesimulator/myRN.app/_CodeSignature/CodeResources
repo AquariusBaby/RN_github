@@ -8,6 +8,22 @@
 		<data>
 		TneGhDkoD7Q01Gl8e5EScUBsgfM=
 		</data>
+		<key>AppIcon20x20@3x.png</key>
+		<data>
+		GAvJTlUPqytZvW0l7qBd28EDtUo=
+		</data>
+		<key>AppIcon29x29@3x.png</key>
+		<data>
+		WvUFzLgO7ShLW0JYhVXfZVb9APo=
+		</data>
+		<key>AppIcon60x60@3x.png</key>
+		<data>
+		LGFJcBocZX1cdytv1wm4tKpD+zw=
+		</data>
+		<key>Assets.car</key>
+		<data>
+		KPJpycCUtC8iAJLUu2xoQrmU4XM=
+		</data>
 		<key>Base.lproj/LaunchScreen.nib</key>
 		<data>
 		Zf4mlZDmpxEQ0QDhhXKk1+Z3ROE=
@@ -107,11 +123,27 @@
 		</data>
 		<key>Info.plist</key>
 		<data>
-		PZNpkkUUH2q2sa4/L2LU9duLHHc=
+		kyQAB2+jI4x0pt4VFCZxEjLwrGI=
 		</data>
 		<key>Ionicons.ttf</key>
 		<data>
 		mRu3+slwnNWNo3kBdw79RwPFQu0=
+		</data>
+		<key>LaunchImage-1100-Portrait-2436h@3x.png</key>
+		<data>
+		EUTxXwldH4IbQxWTyeFQc/hDXFU=
+		</data>
+		<key>LaunchImage-1200-Portrait-2688h@3x.png</key>
+		<data>
+		iU1dhCGMecJ8DzrZCZ18Medegrk=
+		</data>
+		<key>LaunchImage-800-667h@2x.png</key>
+		<data>
+		kfykVIdD7UhZa5Qjzv1TWh7u6G8=
+		</data>
+		<key>LaunchImage-800-Portrait-736h@3x.png</key>
+		<data>
+		PyblS9ycrss+9vlKiRsPnALJTs4=
 		</data>
 		<key>MaterialCommunityIcons.ttf</key>
 		<data>
@@ -135,7 +167,7 @@
 		</data>
 		<key>PlugIns/myRNTests.xctest.dSYM/Contents/Resources/DWARF/myRNTests</key>
 		<data>
-		1K/XxHVrzJfLfZ/JBI3KidB37WY=
+		ddLat4laF1NZFg3pWYI7x9VF0Z0=
 		</data>
 		<key>PlugIns/myRNTests.xctest/Info.plist</key>
 		<data>
@@ -225,6 +257,50 @@
 			<key>hash2</key>
 			<data>
 			eVXKFBJ7MEEsEU6xPP1wK12rJl/rGIDRaV1zyqgkzeE=
+			</data>
+		</dict>
+		<key>AppIcon20x20@3x.png</key>
+		<dict>
+			<key>hash</key>
+			<data>
+			GAvJTlUPqytZvW0l7qBd28EDtUo=
+			</data>
+			<key>hash2</key>
+			<data>
+			dEuxPp7WuCioVMleYW/F/0sMf+bFmVCDPQ3IxoG879M=
+			</data>
+		</dict>
+		<key>AppIcon29x29@3x.png</key>
+		<dict>
+			<key>hash</key>
+			<data>
+			WvUFzLgO7ShLW0JYhVXfZVb9APo=
+			</data>
+			<key>hash2</key>
+			<data>
+			+5mMxbaNyMAr2jO33myx8LG1zXlPfNxfjrVYG1Qa3sg=
+			</data>
+		</dict>
+		<key>AppIcon60x60@3x.png</key>
+		<dict>
+			<key>hash</key>
+			<data>
+			LGFJcBocZX1cdytv1wm4tKpD+zw=
+			</data>
+			<key>hash2</key>
+			<data>
+			Cpd/a0lO5JoO7hm5qwv4vQnVV+A5GHeFqwgSR++im4k=
+			</data>
+		</dict>
+		<key>Assets.car</key>
+		<dict>
+			<key>hash</key>
+			<data>
+			KPJpycCUtC8iAJLUu2xoQrmU4XM=
+			</data>
+			<key>hash2</key>
+			<data>
+			4DZStVPcdrzwyGMLXjC35tCuHPfGRvO23Ndwp7BaDgQ=
 			</data>
 		</dict>
 		<key>Base.lproj/LaunchScreen.nib</key>
@@ -493,6 +569,50 @@
 			INFzvLYFHQlzvgymqi+08npbKQ2AEGyyxWfI/cdyxxE=
 			</data>
 		</dict>
+		<key>LaunchImage-1100-Portrait-2436h@3x.png</key>
+		<dict>
+			<key>hash</key>
+			<data>
+			EUTxXwldH4IbQxWTyeFQc/hDXFU=
+			</data>
+			<key>hash2</key>
+			<data>
+			iG6dLkah7Dtr/9gfrleBTsB4btPsc/3foUnX2uWw988=
+			</data>
+		</dict>
+		<key>LaunchImage-1200-Portrait-2688h@3x.png</key>
+		<dict>
+			<key>hash</key>
+			<data>
+			iU1dhCGMecJ8DzrZCZ18Medegrk=
+			</data>
+			<key>hash2</key>
+			<data>
+			jgNkV6GIhEDdgrP+9nB/Ax/O9xFzRPYjG2OgnKbsGgI=
+			</data>
+		</dict>
+		<key>LaunchImage-800-667h@2x.png</key>
+		<dict>
+			<key>hash</key>
+			<data>
+			kfykVIdD7UhZa5Qjzv1TWh7u6G8=
+			</data>
+			<key>hash2</key>
+			<data>
+			wawHn9DVWQ60z8p9c2Xj+9ydqZ5YaBZHI/WauW6DeG8=
+			</data>
+		</dict>
+		<key>LaunchImage-800-Portrait-736h@3x.png</key>
+		<dict>
+			<key>hash</key>
+			<data>
+			PyblS9ycrss+9vlKiRsPnALJTs4=
+			</data>
+			<key>hash2</key>
+			<data>
+			bVoWk/2MyVS0DG3zVtPSBL50j3g6ztr7HfMhONmCqdU=
+			</data>
+		</dict>
 		<key>MaterialCommunityIcons.ttf</key>
 		<dict>
 			<key>hash</key>
@@ -541,11 +661,11 @@
 		<dict>
 			<key>hash</key>
 			<data>
-			1K/XxHVrzJfLfZ/JBI3KidB37WY=
+			ddLat4laF1NZFg3pWYI7x9VF0Z0=
 			</data>
 			<key>hash2</key>
 			<data>
-			UkmlPqADHzeRgAPmhxpXnFEXSRVqAwNQ58W7WuUNHw4=
+			lwC61YrESR7zyTioXl1cbZMXGnF3FoLR3921e0e5gQA=
 			</data>
 		</dict>
 		<key>PlugIns/myRNTests.xctest/Info.plist</key>

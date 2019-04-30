@@ -1,10 +1,11 @@
 import React, {Component} from 'react';
-import {View, Text, TouchableOpacity, BackHandler} from 'react-native';
+import {View, Text, TouchableOpacity, BackHandler, AsyncStorage} from 'react-native';
 import NavigationBar from '../../common/NavigationBar';
 import NavigationUtil from '../../navigator/NavigationUtil';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import SafeAreaViewPlus from '../../common/SafeAreaViewPlus';
 import GlobalStyle from '../../data/globalStyles';
+import Toast, {DURATION} from 'react-native-easy-toast';
 
 export default class AboutMePage extends Component {
   constructor(props) {
@@ -62,8 +63,31 @@ export default class AboutMePage extends Component {
       >
         {navigationBar}
         <View style={{flex: 1, alignItem: 'center', justifyContent: 'center'}}>
-          <Text style={{textAlign: 'center', fontSize: 16}}>懒的很，啥也没有!</Text>
+          <Text style={{textAlign: 'center', fontSize: 16}}>-调试按钮-</Text>
+          <TouchableOpacity
+            onPress={() => {
+              AsyncStorage.removeItem('Is_First', (error) => {
+                if (error) {
+                  this.toast.show('清除失败，出现错误');
+                } else {
+                  this.toast.show('清除成功');
+                }
+              })
+            }}
+          >
+            <Text style={{padding: 5, borderWidth: 1, borderColor: '#cecece', width: 200,height: 40,alignItem: 'center'}}>清除初始化启动屏的本地存储</Text>
+          </TouchableOpacity>
         </View>
+        <Toast
+          ref={toast => this.toast = toast}
+          style={{backgroundColor: '#000000', padding: 10}}
+          position='center'
+          positionValue={200}
+          fadeInDuration={750}
+          fadeOutDuration={1000}
+          opacity={0.4}
+          textStyle={{color:'#fff'}}
+        />
       </SafeAreaViewPlus>
     )
   }
