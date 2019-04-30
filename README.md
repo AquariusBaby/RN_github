@@ -4,16 +4,15 @@
 待学习技巧：
     1.redux-thunk的使用
     2.取消异步任务的思考与实现
-    3.react-native-event-bus的使用
-    4.react-native-redux-helpers的使用
+    3.react-native-redux-helpers的使用
 
 待开发模块：
-    1.搜索页面
-    2.CodePush
-    3.全面屏适配
+    1.CodePush
+    2.启动页配置
 
     http://localhost:8081/debugger-ui/
 
+打包：
     react-native bundle [参数]
       构建 js 离线包 
 
@@ -36,5 +35,3 @@
         --reset-cache                移除缓存文件
         --config [string]            命令行的配置文件路径
     ---------------------
-
-     ./gradlew assembleDebug
