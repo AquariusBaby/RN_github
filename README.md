@@ -9,6 +9,8 @@
 待开发模块：
     1.CodePush
     2.收藏功能
+    3.分享
+    4.第三方登录
 
 debug地址：
     http://localhost:8081/debugger-ui/
